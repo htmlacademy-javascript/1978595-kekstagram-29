@@ -57,4 +57,4 @@ export const getNumber = (string = '') => {
 
 isShorter();
 isPalindrome();
-console.log(getNumber('jkl'));
+getNumber();
