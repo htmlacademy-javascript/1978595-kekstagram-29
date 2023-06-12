@@ -1,22 +1,26 @@
-//Функция для проверки длины строки. Она принимает строку, которую нужно проверить, и максимальную длину и возвращает true, если строка меньше или равна указанной длине, и false, если строка длиннее.
+/**
+ *  Функция для проверки длины строки. Она принимает строку, которую нужно проверить, и максимальную длину и возвращает true, если строка меньше или равна указанной длине, и false, если строка длиннее.
+ * @param {string} string
+ * @param {number} strLengthMax
+ * @returns {boolean}
+ */
 const isShorter = (string = '', strLengthMax = 0) => string.length <= strLengthMax;
 
 
 //Функция для проверки, является ли строка палиндромом.
-const isPalindrome = (string = '') => {
 
-  string = string.replaceAll(' ','');
-  string = string.toLowerCase();
+/**
+ * проверяет, является ли value палиндромом
+ * @param {string | number} value
+ * @returns {boolean}
+ */
+const isPalindrome = (value) => {
 
-  const strLength = string.length;
-  const strStart = 0;
-  const strEnd = strLength - 1;
+  value = String(value).replaceAll(' ','').toLowerCase();
 
-  for (let i = strStart, j = strEnd; i < j; i++, j--) {
-    if (string[i] !== string[j]) {
+  for (let i = 0, k = value.length - 1 ; i < k; i++, k--) {
+    if (value[i] !== value[k]) {
       return false;
-    } else {
-      continue;
     }
   }
 
@@ -25,36 +29,32 @@ const isPalindrome = (string = '') => {
 };
 
 /*Функция принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает их в виде целого положительного числа. Если в строке нет ни одной цифры, функция должна вернуть NaN.*/
-export const getNumber = (string = '') => {
-  if (typeof(string) !== 'string') {
-    string = String(string);
-  }
+export const parseDigits = (value) => {
+  value = String(value);
   let resultString = '';
-  const strLength = string.length;
-  for (let i = 0; i < strLength; i++) {
-    if (string[i] === '0' ||
-    string[i] === '1' ||
-    string[i] === '2' ||
-    string[i] === '3' ||
-    string[i] === '4' ||
-    string[i] === '5' ||
-    string[i] === '6' ||
-    string[i] === '7' ||
-    string[i] === '8' ||
-    string[i] === '9') {
+  const strLength = value.length;
 
-      resultString = resultString + string[i];
+  for (let i = 0; i < strLength; i++) {
+    if (
+      value[i] === '0' ||
+      value[i] === '1' ||
+      value[i] === '2' ||
+      value[i] === '3' ||
+      value[i] === '4' ||
+      value[i] === '5' ||
+      value[i] === '6' ||
+      value[i] === '7' ||
+      value[i] === '8' ||
+      value[i] === '9'
+    ) {
+      resultString += value[i];
     }
   }
 
-  if (resultString === '') {
-    return NaN;
-  }
-  const result = Number(resultString);
-  return result;
+  return resultString ? Number(resultString) : NaN;
 };
 
 
 isShorter();
 isPalindrome();
-getNumber();
+console.log(parseDigits('agent 007'));
