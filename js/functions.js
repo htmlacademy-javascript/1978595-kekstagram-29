@@ -28,7 +28,11 @@ const isPalindrome = (value) => {
 
 };
 
-/*Функция принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает их в виде целого положительного числа. Если в строке нет ни одной цифры, функция должна вернуть NaN.*/
+/**
+ *Функция принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает их в виде целого положительного числа. Если в строке нет ни одной цифры, функция должна вернуть NaN.
+ * @param {number | string} value
+ * @returns {number}
+ */
 export const parseDigits = (value) => {
   value = String(value);
   let resultString = '';
@@ -57,4 +61,4 @@ export const parseDigits = (value) => {
 
 isShorter();
 isPalindrome();
-console.log(parseDigits('agent 007'));
+parseDigits();
