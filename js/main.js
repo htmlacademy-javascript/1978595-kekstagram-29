@@ -122,6 +122,3 @@ const getPhotoAttributesArray = () => {
 };
 
 getPhotoAttributesArray();
-
-
-
