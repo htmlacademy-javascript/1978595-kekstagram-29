@@ -40,6 +40,9 @@ const getRandomInteger = (min, max) => {
  * @returns {function}
  */
 const getUnicRandomId = (min, max) => {
+  /**
+   * @type {number[]}
+   */
   const previousValues = [];
   return () => {
     let currentValue = getRandomInteger(min, max);
@@ -84,7 +87,7 @@ const getComment = () => ({
 
 /**
  * Функция генерирует от 1 до 30 случайных комментариев
- * @returns {Array}
+ * @returns {Array<object>}
  */
 const getSomeComments = () => {
   const commentArray = [];
@@ -108,14 +111,17 @@ const getPhotoAttributes = () => ({
 
 /**
  * Функция генерирует массив со свойствами для набора фотографий
- * @returns {Array}
+ * @returns {Array<object>}
  */
 const getPhotoAttributesArray = () => {
-  const photoAttributesArray = [];
-  for (let i = 1; i <= 25; i++) {
-    photoAttributesArray.push(getPhotoAttributes());
-  }
+  let photoAttributesArray = [];
+
+  photoAttributesArray = Array.from({length:25}, getPhotoAttributes);
+
   return photoAttributesArray;
 };
 
 getPhotoAttributesArray();
+
+
+
