@@ -90,10 +90,8 @@ const getComment = () => ({
  * @returns {Array<object>}
  */
 const getSomeComments = () => {
-  const commentArray = [];
-  for (let i = 1; i <= getRandomInteger(1, 30); i++) {
-    commentArray.push(getComment());
-  }
+  let commentArray = [];
+  commentArray = Array.from({length: getRandomInteger(0,30)}, getComment);
   return commentArray;
 };
 
