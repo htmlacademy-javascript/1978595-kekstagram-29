@@ -22,7 +22,7 @@ const descriptions = [
 ];
 
 /**
- * Функция генерирует случайное число из диапазона от min до max.
+ * Генерирует случайное число из диапазона от min до max.
  * @param {number} min
  * @param {number} max
  * @returns {number}
@@ -34,7 +34,7 @@ const getRandomInteger = (min, max) => {
 };
 
 /**
- *Функция генерирует функцию для генерации уникальных случайных чисел из диапазона от min до max
+ * Генерирует функцию для генерации уникальных случайных чисел из диапазона от min до max
  * @param {number} min
  * @param {number} max
  * @returns {function}
@@ -59,24 +59,24 @@ const getUnicRandomId = (min, max) => {
 };
 
 /**
- *Функция генерирует случайный уникальный идентификатор для фотографии
+ * Генерирует случайный уникальный идентификатор для фотографии
  @returns {number}
  */
 const getPhotoId = getUnicRandomId(1,25);
 /**
- * Функция генерирует случайный уникальный идентификатор для подстановки в путь к фотографии
+ * Генерирует случайный уникальный идентификатор для подстановки в путь к фотографии
  * @returns {number}
  */
 const getIdForUrl = getUnicRandomId(1,25);
 /**
- * Функция генерирует случайный уникальный идентификатор для комментария
+ * Генерирует случайный уникальный идентификатор для комментария
  * @returns {number}
  */
 const getCommentId = getUnicRandomId(1,10000);
 
 /**
- * Функция генерирует объект, содержащий комментарий к фотографии
- * @returns {Object}
+ * Генерирует объект, содержащий комментарий к фотографии
+ * @returns {PictureComment}
  */
 const getComment = () => ({
   id: getCommentId(),
@@ -86,8 +86,8 @@ const getComment = () => ({
 });
 
 /**
- * Функция генерирует от 1 до 30 случайных комментариев
- * @returns {Array<object>}
+ * Генерирует от 1 до 30 случайных комментариев
+ * @returns {Array<PictureComment>}
  */
 const getSomeComments = () => {
   let commentArray = [];
@@ -96,8 +96,8 @@ const getSomeComments = () => {
 };
 
 /**
- * Функция генерирует набор свойств для фотографии
- * @returns {Object}
+ * Генерирует набор свойств для фотографии
+ * @returns {Picture}
  */
 const getPhotoAttributes = () => ({
   id: getPhotoId(),
@@ -108,13 +108,13 @@ const getPhotoAttributes = () => ({
 });
 
 /**
- * Функция генерирует массив со свойствами для набора фотографий
- * @returns {Array<object>}
+ * Генерирует массив со свойствами для набора фотографий
+ * @returns {Array<Picture>}
  */
-const getPhotoAttributesArray = () => {
+const getPhotoAttributesArray = (length = 25) => {
   let photoAttributesArray = [];
 
-  photoAttributesArray = Array.from({length:25}, getPhotoAttributes);
+  photoAttributesArray = Array.from({length}, getPhotoAttributes);
 
   return photoAttributesArray;
 };
