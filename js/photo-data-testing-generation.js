@@ -1,4 +1,4 @@
-import { getRandomInteger, getUnicRandomId } from './random-numbers-generation';
+import { getRandomInteger, getUnicRandomId } from './random-numbers-generation.js';
 
 const authorNames = [
   'Артем',
