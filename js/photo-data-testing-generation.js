@@ -25,17 +25,14 @@ const descriptions = [
 
 /**
  * Генерирует случайный уникальный идентификатор для фотографии
- @returns {number}
  */
 const getPhotoId = getUnicRandomId(1,25);
 /**
  * Генерирует случайный уникальный идентификатор для подстановки в путь к фотографии
- * @returns {number}
  */
 const getIdForUrl = getUnicRandomId(1,25);
 /**
  * Генерирует случайный уникальный идентификатор для комментария
- * @returns {number}
  */
 const getCommentId = getUnicRandomId(1,10000);
 

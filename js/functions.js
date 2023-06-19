@@ -60,39 +60,45 @@ export const parseDigits = (value) => {
 
 /**
  * Преобразует строку вида ЧЧ:ММ в количество минут
- * @param {string} timeStr
+ * @param {string} time
  * @returns {number}
  */
-const timeToPureMinutes = (timeStr) => {
-  const timeStrArray = timeStr.split(':').map((element) => Number(element));
-  return timeStrArray[0] * 60 + timeStrArray[1];
+const parseTime = (time) => {
+  const parts = time.split(':').map(Number);
+  const [hours, minutes] = parts;
+
+  return hours * 60 + minutes;
 };
 
 /**
  * Принимает время начала и конца рабочего дня, а также время старта и продолжительность встречи в минутах и возвращает true, если встреча не выходит за рамки рабочего дня, и false, если выходит.
- * @param {string} startTime - строка в формате часы:минуты
- * @param {string} endTime  - строка в формате часы:минуты
- * @param {string} meetingStartTime  - строка в формате часы:минуты
+ * @param {string} workStart - строка в формате часы:минуты
+ * @param {string} workEnd  - строка в формате часы:минуты
+ * @param {string} meetingStart  - строка в формате часы:минуты
  * @param {number} meetingDuration - время в минутах
  * @returns {boolean}
  */
-const withinTheWorkingDay = (startTime, endTime, meetingStartTime, meetingDuration) => {
+const isWithinWorkingDay = (workStart, workEnd, meetingStart, meetingDuration) => {
 
-  const startTimeInMinutes = timeToPureMinutes(startTime);
-  const endTimeInMinutes = timeToPureMinutes(endTime);
-  const meetingStartTimeInMinutes = timeToPureMinutes(meetingStartTime);
+  const workStartTime = parseTime(workStart);
+  const workEndTime = parseTime(workEnd);
+  const meetingStartTime = parseTime(meetingStart);
 
-  if (
-    meetingStartTimeInMinutes < startTimeInMinutes ||
-    meetingStartTimeInMinutes > endTimeInMinutes ||
-    meetingStartTimeInMinutes + meetingDuration > endTimeInMinutes
-  ) {
-    return false;
-  }
-  return true;
+  // if (
+  //   meetingStartTimeInMinutes < startTimeInMinutes ||
+  //   meetingStartTimeInMinutes > endTimeInMinutes ||
+  //   meetingStartTimeInMinutes + meetingDuration > endTimeInMinutes
+  // ) {
+  //   return false;
+  // }
+  // return true;
+  return (
+    meetingStartTime >= workStartTime &&
+    meetingDuration <= workEndTime - meetingStartTime
+  );
 };
 
-export {withinTheWorkingDay};
+export {isWithinWorkingDay};
 
 
 isShorter();

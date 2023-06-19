@@ -14,7 +14,7 @@ const getRandomInteger = (min, max) => {
  * Генерирует функцию для генерации уникальных случайных чисел из диапазона от min до max
  * @param {number} min
  * @param {number} max
- * @returns {function}
+ * @returns {() => number}
  */
 const getUnicRandomId = (min, max) => {
   /**
