@@ -58,7 +58,56 @@ export const parseDigits = (value) => {
   return resultString ? Number(resultString) : NaN;
 };
 
+/**
+ * Преобразует строку вида ЧЧ:ММ в количество минут
+ * @param {string} time
+ * @returns {number}
+ */
+const parseTime = (time) => {
+  const parts = time.split(':').map(Number);
+  const [hours, minutes] = parts;
+
+  return hours * 60 + minutes;
+};
+
+/**
+ * Принимает время начала и конца рабочего дня, а также время старта и продолжительность встречи в минутах и возвращает true, если встреча не выходит за рамки рабочего дня, и false, если выходит.
+ * @param {string} workStart - строка в формате часы:минуты
+ * @param {string} workEnd  - строка в формате часы:минуты
+ * @param {string} meetingStart  - строка в формате часы:минуты
+ * @param {number} meetingDuration - время в минутах
+ * @returns {boolean}
+ */
+const isWithinWorkingDay = (workStart, workEnd, meetingStart, meetingDuration) => {
+
+  const workStartTime = parseTime(workStart);
+  const workEndTime = parseTime(workEnd);
+  const meetingStartTime = parseTime(meetingStart);
+
+  // if (
+  //   meetingStartTimeInMinutes < startTimeInMinutes ||
+  //   meetingStartTimeInMinutes > endTimeInMinutes ||
+  //   meetingStartTimeInMinutes + meetingDuration > endTimeInMinutes
+  // ) {
+  //   return false;
+  // }
+  // return true;
+  return (
+    meetingStartTime >= workStartTime &&
+    meetingDuration <= workEndTime - meetingStartTime
+  );
+};
+
+export {isWithinWorkingDay};
+
 
 isShorter();
 isPalindrome(123321);
 parseDigits('es2022');
+
+
+// console.log(withinTheWorkingDay('08:00', '17:30', '14:00', 90));
+// console.log(withinTheWorkingDay('8:0', '10:0', '8:0', 120));
+// console.log(withinTheWorkingDay('08:00', '14:30', '14:00', 90));
+// console.log(withinTheWorkingDay('14:00', '17:30', '08:0', 90));
+// console.log(withinTheWorkingDay('8:00', '17:30', '08:00', 900));
