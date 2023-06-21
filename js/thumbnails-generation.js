@@ -12,10 +12,12 @@ for (const picture of pictures) {
 
   const newPicture = pictureTemplate.cloneNode(true);
 
-  newPicture.querySelector('.picture__img').setAttribute('src',picture.url);
-  newPicture.querySelector('.picture__img').setAttribute('alt',picture.description);
-  newPicture.querySelector('.picture__comments').textContent = Object.keys(picture.comments).length;
-  newPicture.querySelector('.picture__likes').textContent = picture.likes;
+  const {url, description, comments, likes} = picture;
+
+  newPicture.querySelector('.picture__img').setAttribute('src',url);
+  newPicture.querySelector('.picture__img').setAttribute('alt',description);
+  newPicture.querySelector('.picture__comments').textContent = Object.keys(comments).length;
+  newPicture.querySelector('.picture__likes').textContent = likes;
 
   pictureList.appendChild(newPicture);
 
