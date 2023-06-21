@@ -1,26 +1,24 @@
 import {getPhotoAttributesArray} from './photo-data-testing-generation.js';
 
-const pictureTemplate = document.querySelector('#picture').content;
-const pictureContainer = document.querySelector('.pictures');
 const pictures = getPhotoAttributesArray();
 
-console.log(pictureTemplate);
+const pictureContainer = document.querySelector('.pictures');
 
-const photoList = document.createDocumentFragment();
+const pictureTemplate = document.querySelector('#picture').content;
 
-for (const photo of pictures) {
+const pictureList = document.createDocumentFragment();
 
-  const newPhoto = pictureTemplate.cloneNode(true);
-  const newPhotoImg = newPhoto.querySelector('.picture__img');
-  const newPhotoComments = newPhoto.querySelector('.picture__comments');
-  const newPhotoLikes = newPhoto.querySelector('.picture__likes');
+for (const picture of pictures) {
 
-  newPhotoImg.setAttribute('src',photo.url);
-  newPhotoImg.setAttribute('alt',photo.description);
-  newPhotoComments.textContent = Object.keys(photo.comments).length;
-  newPhotoLikes.textContent = photo.likes;
+  const newPicture = pictureTemplate.cloneNode(true);
 
-  photoList.appendChild(newPhoto);
+  newPicture.querySelector('.picture__img').setAttribute('src',picture.url);
+  newPicture.querySelector('.picture__img').setAttribute('alt',picture.description);
+  newPicture.querySelector('.picture__comments').textContent = Object.keys(picture.comments).length;
+  newPicture.querySelector('.picture__likes').textContent = picture.likes;
+
+  pictureList.appendChild(newPicture);
+
 }
 
-pictureContainer.appendChild(photoList);
+pictureContainer.appendChild(pictureList);
