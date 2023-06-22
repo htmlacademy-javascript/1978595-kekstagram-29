@@ -1,5 +1,13 @@
 import { getRandomInteger, getUnicRandomId } from './random-numbers-generation.js';
 
+const PICTURE_COUNT = 25;
+const COMMENT_COUNT_MIN = 0;
+const COMMENT_COUNT_MAX = 30;
+const AVATAR_COUNT_MAX = 6;
+const LIKES_COUNT_MIN = 15;
+const LIKES_COUNT_MAX = 200;
+
+
 const authorNames = [
   'Артем',
   'Сергей',
@@ -26,11 +34,11 @@ const descriptions = [
 /**
  * Генерирует случайный уникальный идентификатор для фотографии
  */
-const getPhotoId = getUnicRandomId(1,25);
+const getPhotoId = getUnicRandomId(1,PICTURE_COUNT);
 /**
  * Генерирует случайный уникальный идентификатор для подстановки в путь к фотографии
  */
-const getIdForUrl = getUnicRandomId(1,25);
+const getIdForUrl = getUnicRandomId(1,PICTURE_COUNT);
 /**
  * Генерирует случайный уникальный идентификатор для комментария
  */
@@ -42,7 +50,7 @@ const getCommentId = getUnicRandomId(1,10000);
  */
 const getComment = () => ({
   id: getCommentId(),
-  avatar: `img/avatar-${getRandomInteger(1,6)}.svg`,
+  avatar: `img/avatar-${getRandomInteger(1,AVATAR_COUNT_MAX)}.svg`,
   message: messages[getRandomInteger(0, messages.length - 1)],
   name: authorNames[getRandomInteger(0, authorNames.length - 1)]
 });
@@ -53,7 +61,7 @@ const getComment = () => ({
  */
 const getSomeComments = () => {
   let commentArray = [];
-  commentArray = Array.from({length: getRandomInteger(0,30)}, getComment);
+  commentArray = Array.from({length: getRandomInteger(COMMENT_COUNT_MIN,COMMENT_COUNT_MAX)}, getComment);
   return commentArray;
 };
 
@@ -65,7 +73,7 @@ const getPhotoAttributes = () => ({
   id: getPhotoId(),
   url: `photos/${getIdForUrl()}.jpg`,
   description: descriptions[getRandomInteger(0, descriptions.length - 1)],
-  likes: getRandomInteger(15, 200),
+  likes: getRandomInteger(LIKES_COUNT_MIN, LIKES_COUNT_MAX),
   comments: getSomeComments()
 });
 
@@ -73,7 +81,7 @@ const getPhotoAttributes = () => ({
  * Генерирует массив со свойствами для набора фотографий
  * @returns {Array<Picture>}
  */
-const getPhotoAttributesArray = (length = 25) => {
+const getPhotoAttributesArray = (length = PICTURE_COUNT) => {
   let photoAttributesArray = [];
 
   photoAttributesArray = Array.from({length}, getPhotoAttributes);

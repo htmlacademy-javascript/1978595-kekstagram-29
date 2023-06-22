@@ -84,14 +84,6 @@ const isWithinWorkingDay = (workStart, workEnd, meetingStart, meetingDuration) =
   const workEndTime = parseTime(workEnd);
   const meetingStartTime = parseTime(meetingStart);
 
-  // if (
-  //   meetingStartTimeInMinutes < startTimeInMinutes ||
-  //   meetingStartTimeInMinutes > endTimeInMinutes ||
-  //   meetingStartTimeInMinutes + meetingDuration > endTimeInMinutes
-  // ) {
-  //   return false;
-  // }
-  // return true;
   return (
     meetingStartTime >= workStartTime &&
     meetingDuration <= workEndTime - meetingStartTime
@@ -105,9 +97,3 @@ isShorter();
 isPalindrome(123321);
 parseDigits('es2022');
 
-
-// console.log(withinTheWorkingDay('08:00', '17:30', '14:00', 90));
-// console.log(withinTheWorkingDay('8:0', '10:0', '8:0', 120));
-// console.log(withinTheWorkingDay('08:00', '14:30', '14:00', 90));
-// console.log(withinTheWorkingDay('14:00', '17:30', '08:0', 90));
-// console.log(withinTheWorkingDay('8:00', '17:30', '08:00', 900));
