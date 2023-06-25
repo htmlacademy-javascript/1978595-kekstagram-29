@@ -1,4 +1,4 @@
-import { getRandomInteger, getUnicRandomId } from './random-numbers-generation.js';
+import { getRandomInteger, getUnicRandomId } from './utils/random-numbers-generation.js';
 
 const PICTURE_COUNT = 25;
 const COMMENT_COUNT_MIN = 0;
