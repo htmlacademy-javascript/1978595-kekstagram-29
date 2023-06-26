@@ -12,6 +12,7 @@ const pictureWindow = document.querySelector('.big-picture');
  */
 const escKeydownHandler = (evt) => {
   if (evt.key === 'Escape') {
+    evt.preventDefault();
     pictureWindow.querySelector('.big-picture__cancel').removeEventListener('click', closePictureWindowHandler);
     document.removeEventListener('keydown', escKeydownHandler);
     makeHiddenModal(pictureWindow);
@@ -66,6 +67,7 @@ const updateInfo = (neededId) => {
  * @param {PointerEvent} evt
  */
 const thumbnailsClickHandler = (evt) => {
+  evt.preventDefault();
   if (/** @type {HTMLImageElement} */(evt.target).nodeName === 'IMG') {
     makeVisibleModal(pictureWindow);
     pictureWindow.querySelector('.big-picture__cancel').addEventListener('click', closePictureWindowHandler);
