@@ -1,8 +1,13 @@
+import { openModal } from './window-showing.js';
+import { updateInfo } from './big-picture-window.js';
+
 const pictureContainer = document.querySelector('.pictures');
 /**
  * @type {HTMLTemplateElement}
  */
 const pictureTemplate = document.querySelector('#picture');
+
+const pictureWindow = document.querySelector('.big-picture');
 
 /**
  * Отрисовывает миниатюры
@@ -23,6 +28,13 @@ const renderThumbnails = (data) => {
     newPicture.querySelector('.picture__comments').textContent = String(comments.length);
     newPicture.querySelector('.picture__likes').textContent = String(likes);
     newPicture.querySelector('.picture__img').setAttribute('id', String(id));
+
+    newPicture.querySelector('.picture').addEventListener('click', (event) => {
+      event.preventDefault();
+      openModal(pictureWindow);
+      updateInfo(picture);
+    });
+
 
     fragment.appendChild(newPicture);
   }

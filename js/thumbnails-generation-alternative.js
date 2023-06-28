@@ -1,8 +1,13 @@
+import { openModal } from './window-showing.js';
+import { updateInfo } from './big-picture-window.js';
+
 const pictureContainer = document.querySelector('.pictures');
 /**
  * @type {HTMLTemplateElement}
  */
 const pictureTemplate = document.querySelector('#picture');
+
+const pictureWindow = document.querySelector('.big-picture');
 
 /**
  * Создает разметку для одной миниатюры
@@ -19,6 +24,12 @@ const createThumbnail = (picture) => {
   newPicture.querySelector('.picture__img').setAttribute('alt',description);
   newPicture.querySelector('.picture__comments').textContent = String(comments.length);
   newPicture.querySelector('.picture__likes').textContent = String(likes);
+
+  newPicture.querySelector('.picture').addEventListener('click', (event) => {
+    event.preventDefault();
+    openModal(pictureWindow);
+    updateInfo(picture);
+  });
 
   return newPicture;
 };
