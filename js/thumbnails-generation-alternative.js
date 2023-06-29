@@ -1,13 +1,10 @@
-import { openModal } from './window-showing.js';
-import { updateInfo } from './big-picture-window.js';
+import { renderPopup } from './gallery-popup.js';
 
 const pictureContainer = document.querySelector('.pictures');
 /**
  * @type {HTMLTemplateElement}
  */
 const pictureTemplate = document.querySelector('#picture');
-
-const pictureWindow = document.querySelector('.big-picture');
 
 /**
  * Создает разметку для одной миниатюры
@@ -27,8 +24,8 @@ const createThumbnail = (picture) => {
 
   newPicture.querySelector('.picture').addEventListener('click', (event) => {
     event.preventDefault();
-    openModal(pictureWindow);
-    updateInfo(picture);
+    //openModal(pictureWindow);
+    renderPopup(picture);
   });
 
   return newPicture;
