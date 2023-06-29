@@ -24,7 +24,7 @@ const createComment = (data) => {
   return comment;
 };
 
-let [commentCount, commentTotal] = popup.querySelectorAll('.comments-count');
+const [commentCount, commentTotal] = popup.querySelectorAll('.comments-count');
 
 /**
  * @param {Array<PictureComment>} data
