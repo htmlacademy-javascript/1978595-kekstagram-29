@@ -27,6 +27,16 @@ const createComment = (data) => {
 const [commentCount, commentTotal] = popup.querySelectorAll('.comments-count');
 
 /**
+ *
+ * @param {MouseEvent & {target: Element}} event
+ */
+const popupClickHandler = (event) => {
+  if (event.target.closest('.social__comments-loader')) {
+    renderNextComments();
+  }
+};
+
+/**
  * @param {Array<PictureComment>} data
  * @param {number} step
  * @return {() => void}
@@ -42,17 +52,10 @@ const createCommentsRenderer = (data, step = 5) => {
     discussion.append(...data.splice(0, step).map(createComment));
     commentCount.textContent = String(discussion.childElementCount);
     loadMoreButton.classList.toggle('hidden', data.length === 0);
+    if (data.length === 0) {
+      popup.removeEventListener('click', popupClickHandler);
+    }
   };
-};
-
-/**
- *
- * @param {MouseEvent & {target: Element}} event
- */
-const popupClickHandler = (event) => {
-  if (event.target.closest('.social__comments-loader')) {
-    renderNextComments();
-  }
 };
 
 /**
