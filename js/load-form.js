@@ -1,8 +1,5 @@
 import { openModal } from './popup.js';
 
-const HASHTAG_ERROR_TEXT = 'Некорректный набор хештегов!';
-const COMMENT_ERROR_TEXT = 'Слишком длинный комментарий!';
-
 const loadNewButton = document.querySelector('.img-upload__input');
 const loadNewPopup = document.querySelector('.img-upload__overlay');
 const imageLoadForm = /** @type {HTMLFormElement} */(document.querySelector('.img-upload__form'));
@@ -24,56 +21,137 @@ const hashTagInput = /** @type {HTMLInputElement} */(imageLoadForm.querySelector
 const commentInput = /** @type {HTMLTextAreaElement} */(imageLoadForm.querySelector('.text__description'));
 const submitButton = /** @type {HTMLButtonElement} */(loadNewPopup.querySelector('.img-upload__submit'));
 
+const InputsValid = {
+  hashTagInput : true,
+  commentInput : true,
+  resetAll : function() {
+    this.hashTagInput = true;
+    this.commentInput = true;
+  },
+  isAllValid : function() {
+    return (this.hashTagInput && this.commentInput);
+  }
+};
+
 /**
- * Валидация полей ввода хеш-тегов и комментария
+ * Формирует массив хеш-тегов
+ * @returns {Array<string>}
+ */
+const makeHashTagArray = () => hashTagInput.value.trim().toLowerCase().split(' ').filter((element) => element.trim().length !== 0);
+
+/**
+ * Валидация поля ввода хеш-тегов на превышение количества тегов
  * @returns {boolean}
  */
-const hashTagValidate = () => {
-  const hashTagArray = hashTagInput.value.trim().toLowerCase().split(' ').filter((element) => element.trim().length !== 0);
+const hashTagCountValidate = () => {
 
-  console.log(hashTagArray);
+  const hashTagArray = makeHashTagArray();
 
   if (hashTagArray.length > 5) {
+
     submitButton.disabled = true;
+    InputsValid.hashTagInput = false;
     return false;
   }
 
-  if (hashTagArray.some((element) => !hashTagPattern.test(element))) {
-    submitButton.disabled = true;
-    return false;
-  }
+  InputsValid.hashTagInput = true;
 
-  if (hashTagArray.some((element) => hashTagArray.indexOf(element) !== hashTagArray.lastIndexOf(element))) {
-    submitButton.disabled = true;
-    return false;
+  if (InputsValid.isAllValid()) {
+    submitButton.disabled = false;
   }
-
-  submitButton.disabled = false;
 
   return true;
 };
-
-const commentValidate = () => {
-  if (commentInput.value.length >= 3) {
-    submitButton.disabled = true;
-    return false;
-  }
-  submitButton.disabled = false;
-  return true;
-};
-
-formValidator.addValidator(hashTagInput, hashTagValidate, HASHTAG_ERROR_TEXT);
-formValidator.addValidator(commentInput, commentValidate, COMMENT_ERROR_TEXT);
 
 /**
- * Сбрасывает состояние формы
+ * Валидация поля ввода хеш-тегов на превышение количества тегов
+ * @returns {boolean}
+ */
+const hashTagPatternValidate = () => {
+
+  const hashTagArray = makeHashTagArray();
+
+  if (hashTagArray.some((element) => !hashTagPattern.test(element))) {
+
+    submitButton.disabled = true;
+    InputsValid.hashTagInput = false;
+    return false;
+  }
+
+  InputsValid.hashTagInput = true;
+
+  if (InputsValid.isAllValid()) {
+    submitButton.disabled = false;
+  }
+
+  return true;
+};
+
+/**
+ * Валидация поля ввода хеш-тегов на превышение количества тегов
+ * @returns {boolean}
+ */
+const hashTagRepeatingValidate = () => {
+
+  const hashTagArray = makeHashTagArray();
+
+  if (hashTagArray.some((element) => hashTagArray.indexOf(element) !== hashTagArray.lastIndexOf(element))) {
+
+    submitButton.disabled = true;
+    InputsValid.hashTagInput = false;
+    return false;
+  }
+
+  InputsValid.hashTagInput = true;
+
+  if (InputsValid.isAllValid()) {
+    submitButton.disabled = false;
+  }
+
+  return true;
+};
+
+/**
+ * Валидация поля ввода комментария
+ * @returns {boolean}
+ */
+function commentValidate() {
+  if (commentInput.value.length >= 3) {
+
+    submitButton.disabled = true;
+    InputsValid.commentInput = false;
+    return false;
+  }
+
+  InputsValid.commentInput = true;
+
+  if (InputsValid.isAllValid()) {
+    submitButton.disabled = false;
+  }
+
+  return true;
+
+}
+
+formValidator.addValidator(hashTagInput, hashTagCountValidate, 'Превышено число хеш-тегов', 1, true);
+formValidator.addValidator(hashTagInput, hashTagPatternValidate, 'Один из хеш-тегов некорректный', 1, true);
+formValidator.addValidator(hashTagInput, hashTagRepeatingValidate, 'Найдены повторяющиеся хеш-теги', 1, true);
+formValidator.addValidator(commentInput, commentValidate, 'Слишком длинный комментарий!', 1, true);
+
+/**
+ * Возвращает состояние формы в исходное при закрытии
  */
 const resetForm = () => {
   imageLoadForm.reset();
   formValidator.reset();
   submitButton.disabled = false;
+  InputsValid.resetAll();
 };
 
+/**
+ * Сброс состояния формы при закрытии по нажатию ESC
+ * @param {KeyboardEvent} event
+ */
 function keydownHandler(event) {
   if (event.key === 'Escape') {
     resetForm();
