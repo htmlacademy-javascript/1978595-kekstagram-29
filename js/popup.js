@@ -1,9 +1,18 @@
+
+/**
+ * Проверяет элемент на принадлежность к полям текстового ввода
+ * @param {Element} elem
+ * @returns {boolean}
+ */
+const isTextInputFocused = (elem) =>
+  (elem.tagName === 'INPUT' && elem.getAttribute('type') === 'text') || elem.tagName === 'TEXTAREA';
+
 /**
  * Обработчик нажатия кдавиши Esc
  * @param {KeyboardEvent} event
  */
 const keydownHandler = (event) => {
-  if (event.key === 'Escape') {
+  if (event.key === 'Escape' && !isTextInputFocused(document.activeElement)) {
     closeModal(document.querySelector('.overlay:not(.hidden)'));
   }
 };
@@ -14,6 +23,7 @@ const keydownHandler = (event) => {
  */
 const modalClickHandler = (event) => {
   if (event.target.closest('.cancel')) {
+    event.currentTarget.dispatchEvent(new Event('popup::hide'));
     closeModal(event.currentTarget);
   }
 };

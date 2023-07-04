@@ -1,7 +1,7 @@
 import { getPhotoAttributesArray } from './data.js';
 //import {renderThumbnails} from './gallery.js';
-import { renderGallery } from './thumbnails-generation-alternative.js';
-import './load-form.js';
+import { renderGallery } from './gallery.js';
+import './load-form/load-form.js';
 
 //renderThumbnails(getPhotoAttributesArray());
 
