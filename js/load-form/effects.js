@@ -1,6 +1,55 @@
-import { sliderContainer, effectSlider } from './elements.js';
+export const Effects = {
+  none: {
 
-noUiSlider.create (effectSlider, {
-  start: [100],
-  range: {min: [0], max: [100]}
-});
+    style: 'none',
+    step: 0,
+    min: 0,
+    max: 0,
+    unit: ''
+  },
+
+  chrome: {
+
+    style: 'grayscale',
+    step: 0.1,
+    min: 0,
+    max: 1,
+    unit: ''
+  },
+
+  sepia: {
+
+    style: 'sepia',
+    step: 0.1,
+    min: 0,
+    max: 1,
+    unit: ''
+  },
+
+  marvin: {
+
+    style: 'invert',
+    step: 1,
+    min: 0,
+    max: 100,
+    unit: '%'
+  },
+
+  phobos: {
+
+    style: 'blur',
+    step: 0.1,
+    min: 0,
+    max: 3,
+    unit: 'px'
+  },
+
+  heat: {
+
+    style: 'brightness',
+    step: 0.1,
+    min: 1,
+    max: 3,
+    unit: ''
+  }
+};

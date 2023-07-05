@@ -11,7 +11,7 @@ let currentScale = parseDigits(scaleInput.getAttribute('value'));
 const scaleBiggerHandler = () => {
   if (currentScale !== MAX_SCALE) {
     currentScale += SCALE_STEP;
-    scaleInput.setAttribute('value', `${currentScale}%`);
+    scaleInput.value = `${currentScale}%`;
     pictureImage.style.transform = `scale(${currentScale / 100})`;
   }
 };
@@ -19,14 +19,14 @@ const scaleBiggerHandler = () => {
 const scaleSmallerHandler = () => {
   if (currentScale !== MIN_SCALE) {
     currentScale -= SCALE_STEP;
-    scaleInput.setAttribute('value', `${currentScale}%`);
+    scaleInput.value = `${currentScale}%`;
     pictureImage.style.transform = `scale(${currentScale / 100})`;
   }
 };
 
 const resetScale = () => {
   currentScale = START_SCALE;
-  scaleInput.setAttribute('value', `${currentScale}%`);
+  scaleInput.value = `${currentScale}%`;
   pictureImage.style.transform = `scale(${currentScale / 100})`;
 };
 

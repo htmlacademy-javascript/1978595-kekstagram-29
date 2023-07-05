@@ -5,9 +5,11 @@ export const hashTagInput = /** @type {HTMLInputElement} */(imageLoadForm.queryS
 export const commentInput = /** @type {HTMLTextAreaElement} */(imageLoadForm.querySelector('.text__description'));
 export const submitButton = /** @type {HTMLButtonElement} */(imageLoadForm.querySelector('.img-upload__submit'));
 export const pictureImage = /** @type {HTMLImageElement} */(imageLoadForm.querySelector('.img-upload__preview img'));
-export const scaleInput = imageLoadForm.querySelector('.scale__control--value');
+export const scaleInput = /** @type {HTMLInputElement} */(imageLoadForm.querySelector('.scale__control--value'));
 export const scaleSmaller = imageLoadForm.querySelector('.scale__control--smaller');
 export const scaleBigger = imageLoadForm.querySelector('.scale__control--bigger');
 export const sliderContainer = imageLoadForm.querySelector('.img-upload__effect-level');
 export const effectSlider = imageLoadForm.querySelector('.effect-level__slider');
+export const effectInput = /** @type {HTMLInputElement} */(imageLoadForm.querySelector('.effect-level__value'));
+export const effectFieldSet = /** @type {HTMLFieldSetElement}*/(imageLoadForm.querySelector('.effects'));
 //console.log();
