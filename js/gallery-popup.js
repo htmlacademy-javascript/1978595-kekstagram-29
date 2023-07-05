@@ -24,7 +24,15 @@ const createComment = (data) => {
   return comment;
 };
 
-const [commentCount, commentTotal] = popup.querySelectorAll('.comments-count');
+/**
+ *
+ * @param {MouseEvent & {target: Element}} event
+ */
+const popupClickHandler = (event) => {
+  if (event.target.closest('.social__comments-loader')) {
+    renderNextComments();
+  }
+};
 
 /**
  * @param {Array<PictureComment>} data
@@ -34,25 +42,17 @@ const [commentCount, commentTotal] = popup.querySelectorAll('.comments-count');
 const createCommentsRenderer = (data, step = 5) => {
   const discussion = popup.querySelector('.social__comments');
   const loadMoreButton = popup.querySelector('.social__comments-loader');
+  const [commentCount, commentTotal] = popup.querySelectorAll('.comments-count');
 
   data = structuredClone(data);
   discussion.replaceChildren();
+  commentTotal.textContent = String(data.length);
 
   return () => {
     discussion.append(...data.splice(0, step).map(createComment));
     commentCount.textContent = String(discussion.childElementCount);
     loadMoreButton.classList.toggle('hidden', data.length === 0);
   };
-};
-
-/**
- *
- * @param {MouseEvent & {target: Element}} event
- */
-const popupClickHandler = (event) => {
-  if (event.target.closest('.social__comments-loader')) {
-    renderNextComments();
-  }
 };
 
 /**
@@ -65,7 +65,6 @@ const renderPopup = (picture) => {
   popup.querySelector('.big-picture__img img').setAttribute('src', url);
   popup.querySelector('.social__caption').textContent = description;
   popup.querySelector('.likes-count').textContent = String(likes);
-  commentTotal.textContent = String(comments.length);
 
   renderNextComments = createCommentsRenderer(comments);
   renderNextComments();
