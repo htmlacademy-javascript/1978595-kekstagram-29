@@ -10,7 +10,6 @@ noUiSlider.create (effectSlider, {
 
 let currentEffect = 'none';
 
-
 const resetEffect = () => {
   sliderContainer.classList.add('hidden');
   pictureImage.style.filter = 'none';
@@ -31,12 +30,10 @@ const changeEffectLevel = (effect) => {
   const level = effectSlider.noUiSlider.get();
   pictureImage.style.filter = `${Effects[effect].style}(${level}${Effects[effect].unit})`;
   effectInput.value = `${level}`;
-  console.log(level, pictureImage.style.filter, effectInput.value);
 };
 
-resetEffect();
 
-effectSlider.noUiSlider.on('update',() => changeEffectLevel(currentEffect));
+effectSlider.noUiSlider.on('update', () => changeEffectLevel(currentEffect));
 
 effectFieldSet.addEventListener('change', (event) => {
 
