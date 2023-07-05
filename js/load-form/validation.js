@@ -1,4 +1,4 @@
-import {imageLoadForm, hashTagInput, commentInput, submitButton } from './entities.js';
+import {imageLoadForm, hashTagInput, commentInput, submitButton } from './elements.js';
 import { segmentWords } from '../utils/string-parsing.js';
 
 const hashTagPattern = /^#[a-zа-яё0-9]{1,19}$/i;

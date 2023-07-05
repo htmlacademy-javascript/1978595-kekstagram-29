@@ -1,15 +1,18 @@
 import { openModal } from '../popup.js';
-import {loadNewButton, loadNewPopup, imageLoadForm} from './entities.js';
+import { loadNewButton, loadNewPopup, imageLoadForm } from './elements.js';
 import { formValidator } from './validation.js';
+import { resetScale } from './scaling.js';
+import './effects.js';
 
 
-loadNewButton.addEventListener('input', () => {
+loadNewButton.addEventListener('change', () => {
 
   openModal(loadNewPopup);
 
 });
 
 imageLoadForm.addEventListener('reset', () => {
+  resetScale();
   formValidator.reset();
 });
 
