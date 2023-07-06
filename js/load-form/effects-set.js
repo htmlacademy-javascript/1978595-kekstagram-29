@@ -32,6 +32,7 @@ const changeEffectLevel = (effect) => {
   effectInput.value = `${level}`;
 };
 
+resetEffect();
 
 effectSlider.noUiSlider.on('update', () => changeEffectLevel(currentEffect));
 
