@@ -26,5 +26,5 @@
 
 /**
  * @typedef GraphicEffectObject
- * @prop {Object.<string, GraphicEffect>}
+ * @type {Object.<string, GraphicEffect>}
  */
