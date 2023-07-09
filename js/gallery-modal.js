@@ -1,7 +1,7 @@
-import { openModal } from './popup.js';
+import { openModal } from './modal.js';
 
-const popup = document.querySelector('.big-picture');
-const commentTemplate = popup.querySelector('.social__comment');
+const modal = document.querySelector('.big-picture');
+const commentTemplate = modal.querySelector('.social__comment');
 
 /**
  * @type {ReturnType<createCommentsRenderer>}
@@ -28,7 +28,7 @@ const createComment = (data) => {
  *
  * @param {MouseEvent & {target: Element}} event
  */
-const popupClickHandler = (event) => {
+const modalClickHandler = (event) => {
   if (event.target.closest('.social__comments-loader')) {
     renderNextComments();
   }
@@ -40,9 +40,9 @@ const popupClickHandler = (event) => {
  * @return {() => void}
  */
 const createCommentsRenderer = (data, step = 5) => {
-  const discussion = popup.querySelector('.social__comments');
-  const loadMoreButton = popup.querySelector('.social__comments-loader');
-  const [commentCount, commentTotal] = popup.querySelectorAll('.comments-count');
+  const discussion = modal.querySelector('.social__comments');
+  const loadMoreButton = modal.querySelector('.social__comments-loader');
+  const [commentCount, commentTotal] = modal.querySelectorAll('.comments-count');
 
   data = structuredClone(data);
   discussion.replaceChildren();
@@ -59,19 +59,19 @@ const createCommentsRenderer = (data, step = 5) => {
  * Обновляет содержимое окна картинки
  * @param {Picture} picture - объект со свойствами картинки
  */
-const renderPopup = (picture) => {
+const renderModal = (picture) => {
   const {url, description, likes, comments} = picture;
 
-  popup.querySelector('.big-picture__img img').setAttribute('src', url);
-  popup.querySelector('.social__caption').textContent = description;
-  popup.querySelector('.likes-count').textContent = String(likes);
+  modal.querySelector('.big-picture__img img').setAttribute('src', url);
+  modal.querySelector('.social__caption').textContent = description;
+  modal.querySelector('.likes-count').textContent = String(likes);
 
   renderNextComments = createCommentsRenderer(comments);
   renderNextComments();
-  popup.addEventListener('click', popupClickHandler);
+  modal.addEventListener('click', modalClickHandler);
 
-  openModal(popup);
+  openModal(modal);
 
 };
 
-export {renderPopup};
+export {renderModal};

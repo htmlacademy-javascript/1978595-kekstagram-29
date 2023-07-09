@@ -1,4 +1,4 @@
-import { renderPopup } from './gallery-popup.js';
+import { renderModal } from './gallery-modal.js';
 
 const pictureContainer = document.querySelector('.pictures');
 /**
@@ -25,7 +25,7 @@ const createThumbnail = (picture) => {
   newPicture.querySelector('.picture').addEventListener('click', (event) => {
     event.preventDefault();
     //openModal(pictureWindow);
-    renderPopup(picture);
+    renderModal(picture);
   });
 
   return newPicture;

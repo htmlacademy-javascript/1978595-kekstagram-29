@@ -13,7 +13,6 @@ const isTextInputFocused = (elem) =>
  */
 const keydownHandler = (event) => {
   if (event.key === 'Escape' && !isTextInputFocused(document.activeElement)) {
-    document.querySelector('.overlay:not(.hidden)').dispatchEvent(new Event('popup::hide'));
     closeModal(document.querySelector('.overlay:not(.hidden)'));
   }
 };
@@ -48,6 +47,8 @@ function closeModal (modal) {
 
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', keydownHandler);
+
+  modal.dispatchEvent(new Event('modal::hide'));
 }
 
 export {closeModal, openModal};

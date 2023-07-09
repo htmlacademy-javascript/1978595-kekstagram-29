@@ -1,5 +1,12 @@
-import {imageLoadForm, hashTagInput, commentInput, submitButton } from './elements.js';
 import { segmentWords } from '../utils/string-parsing.js';
+
+const imageUploadForm = /** @type {HTMLFormElement} */(document.querySelector('.img-upload__form'));
+
+const hashTagInput = /** @type {HTMLInputElement} */(imageUploadForm.querySelector('.text__hashtags'));
+
+const commentInput = /** @type {HTMLTextAreaElement} */(imageUploadForm.querySelector('.text__description'));
+
+const submitButton = /** @type {HTMLButtonElement} */(imageUploadForm.querySelector('.img-upload__submit'));
 
 const hashTagPattern = /^#[a-zа-яё0-9]{1,19}$/i;
 
@@ -13,10 +20,10 @@ const pristineConfig = {
 };
 
 
-const formValidator = new Pristine(imageLoadForm, pristineConfig);
+const formValidator = new Pristine(imageUploadForm, pristineConfig);
 
 
-imageLoadForm.addEventListener('input', () => {
+imageUploadForm.addEventListener('input', () => {
 
   submitButton.toggleAttribute('disabled', !formValidator.validate());
 
@@ -53,7 +60,7 @@ formValidator.addValidator(hashTagInput, hashTagPatternValidate, 'Один из 
 formValidator.addValidator(hashTagInput, hashTagRepeatingValidate, 'Найдены повторяющиеся хеш-теги', 1, true);
 formValidator.addValidator(commentInput, commentValidate, 'Слишком длинный комментарий!', 1, true);
 
-imageLoadForm.addEventListener('reset', () => {
+imageUploadForm.addEventListener('reset', () => {
 
   formValidator.reset();
 
