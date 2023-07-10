@@ -1,14 +1,24 @@
 import { segmentWords } from '../utils/string-parsing.js';
 
+const MAX_HASHTAG_COUNT = 5;
+
+/**
+ * Форма загрузки нового изображения
+ */
 const imageUploadForm = /** @type {HTMLFormElement} */(document.querySelector('.img-upload__form'));
 
+/**Поле ввода хеш-тегов */
 const hashTagInput = /** @type {HTMLInputElement} */(imageUploadForm.querySelector('.text__hashtags'));
 
+/**
+ * Поле ввода комментариев
+ */
 const commentInput = /** @type {HTMLTextAreaElement} */(imageUploadForm.querySelector('.text__description'));
 
+/**
+ * Кнопка отправки
+ */
 const submitButton = /** @type {HTMLButtonElement} */(imageUploadForm.querySelector('.img-upload__submit'));
-
-const hashTagPattern = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const pristineConfig = {
   classTo: 'img-upload__field-wrapper',
@@ -19,22 +29,17 @@ const pristineConfig = {
   errorTextTag: 'div'
 };
 
-
+//@ts-ignore
 const formValidator = new Pristine(imageUploadForm, pristineConfig);
 
-
-imageUploadForm.addEventListener('input', () => {
-
-  submitButton.toggleAttribute('disabled', !formValidator.validate());
-
-});
-
+/**Шаблон для проверки хеш-тега на недопустимые сомволы */
+const hashTagPattern = /^#[a-zа-яё0-9]{1,19}$/i;
 
 /**
  * Валидация поля ввода хеш-тегов на превышение количества тегов
  * @returns {boolean}
  */
-const hashTagCountValidate = () => segmentWords(hashTagInput.value).length <= 5;
+const hashTagCountValidate = () => segmentWords(hashTagInput.value).length <= MAX_HASHTAG_COUNT;
 
 /**
  * Валидация поля ввода хеш-тегов на соответствие шаблону
@@ -47,13 +52,23 @@ const hashTagPatternValidate = () => segmentWords(hashTagInput.value).every((ele
  * Валидация поля ввода хеш-тегов на повторы
  * @returns {boolean}
  */
-const hashTagRepeatingValidate = () => segmentWords(hashTagInput.value).every((element) => segmentWords(hashTagInput.value).indexOf(element) === segmentWords(hashTagInput.value).lastIndexOf(element));
+const hashTagRepeatingValidate = () => {
+  const hashTagArray = segmentWords(hashTagInput.value);
+  return hashTagArray.every((element) => hashTagArray.indexOf(element) === hashTagArray.lastIndexOf(element));
+};
 
 /**
  * Валидация поля ввода комментария
  * @returns {boolean}
  */
 const commentValidate = () => commentInput.value.length <= 3;
+
+
+imageUploadForm.addEventListener('input', () => {
+
+  submitButton.toggleAttribute('disabled', !formValidator.validate());
+
+});
 
 formValidator.addValidator(hashTagInput, hashTagCountValidate, 'Превышено число хеш-тегов', 1, true);
 formValidator.addValidator(hashTagInput, hashTagPatternValidate, 'Один из хеш-тегов некорректный', 1, true);

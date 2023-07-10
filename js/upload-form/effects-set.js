@@ -12,6 +12,7 @@ const pictureImage = /** @type {HTMLImageElement} */(imageUploadForm.querySelect
 
 const effectInput = /** @type {HTMLInputElement} */(imageUploadForm.querySelector('.effect-level__value'));
 
+//@ts-ignore
 noUiSlider.create (effectSlider, {
   start: [100],
   range: {min: [0], max: [0]},
@@ -48,13 +49,13 @@ const setEffect = (effect) => {
 const changeEffectLevel = () => {
   const level = effectSlider.noUiSlider.get(true);
   effectInput.value = level;
-  console.log(effectSlider.noUiSlider.get());
+  //console.log(effectSlider.noUiSlider.get());
   pictureImage.style.filter = effectSlider.noUiSlider.get();
 };
 
 resetEffect();
 
-effectSlider.noUiSlider.on('update', () => changeEffectLevel(currentEffect));
+effectSlider.noUiSlider.on('update', () => changeEffectLevel());
 
 effectFieldSet.addEventListener('change', (event) => {
 

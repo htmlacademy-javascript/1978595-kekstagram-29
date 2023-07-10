@@ -1,11 +1,9 @@
-
 /**
  * Проверяет элемент на принадлежность к полям текстового ввода
  * @param {Element} elem
  * @returns {boolean}
  */
-const isTextInputFocused = (elem) =>
-  (elem.tagName === 'INPUT' && elem.getAttribute('type') === 'text') || elem.tagName === 'TEXTAREA';
+const isTextInputFocused = (elem) => elem.matches('input[type="text"], textarea');
 
 /**
  * Обработчик нажатия кдавиши Esc
