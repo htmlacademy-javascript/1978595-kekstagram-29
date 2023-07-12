@@ -1,9 +1,9 @@
-import { getPhotoAttributesArray } from './data.js';
-//import {renderThumbnails} from './gallery.js';
 import { renderGallery } from './gallery.js';
 import './upload-form/upload-form.js';
 
-//renderThumbnails(getPhotoAttributesArray());
+fetch('https://29.javascript.pages.academy/kekstagram/data')
+  .then((response) => response.json())
+  .then((data) => renderGallery(data))
+  .catch(() => console.log("Ошибка"));
 
-renderGallery(getPhotoAttributesArray());
 

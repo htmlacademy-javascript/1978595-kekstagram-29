@@ -1,6 +1,7 @@
 import { segmentWords } from '../utils/string-parsing.js';
 
 const MAX_HASHTAG_COUNT = 5;
+const MAX_COMMENT_LENGTH = 140;
 
 /**
  * Форма загрузки нового изображения
@@ -39,20 +40,20 @@ const hashTagPattern = /^#[a-zа-яё0-9]{1,19}$/i;
  * Валидация поля ввода хеш-тегов на превышение количества тегов
  * @returns {boolean}
  */
-const hashTagCountValidate = () => segmentWords(hashTagInput.value).length <= MAX_HASHTAG_COUNT;
+const validateCount = () => segmentWords(hashTagInput.value).length <= MAX_HASHTAG_COUNT;
 
 /**
  * Валидация поля ввода хеш-тегов на соответствие шаблону
  * @returns {boolean}
  */
-const hashTagPatternValidate = () => segmentWords(hashTagInput.value).every((element) => hashTagPattern.test(element));
+const validatePattern = () => segmentWords(hashTagInput.value).every((element) => hashTagPattern.test(element));
 
 
 /**
  * Валидация поля ввода хеш-тегов на повторы
  * @returns {boolean}
  */
-const hashTagRepeatingValidate = () => {
+const validateRepeating = () => {
   const hashTagArray = segmentWords(hashTagInput.value);
   return hashTagArray.every((element) => hashTagArray.indexOf(element) === hashTagArray.lastIndexOf(element));
 };
@@ -61,7 +62,7 @@ const hashTagRepeatingValidate = () => {
  * Валидация поля ввода комментария
  * @returns {boolean}
  */
-const commentValidate = () => commentInput.value.length <= 3;
+const validateComment = () => commentInput.value.length <= MAX_COMMENT_LENGTH;
 
 
 imageUploadForm.addEventListener('input', () => {
@@ -70,10 +71,10 @@ imageUploadForm.addEventListener('input', () => {
 
 });
 
-formValidator.addValidator(hashTagInput, hashTagCountValidate, 'Превышено число хеш-тегов', 1, true);
-formValidator.addValidator(hashTagInput, hashTagPatternValidate, 'Один из хеш-тегов некорректный', 1, true);
-formValidator.addValidator(hashTagInput, hashTagRepeatingValidate, 'Найдены повторяющиеся хеш-теги', 1, true);
-formValidator.addValidator(commentInput, commentValidate, 'Слишком длинный комментарий!', 1, true);
+formValidator.addValidator(hashTagInput, validateCount, 'Превышено число хеш-тегов', 1, true);
+formValidator.addValidator(hashTagInput, validatePattern, 'Один из хеш-тегов некорректный', 1, true);
+formValidator.addValidator(hashTagInput, validateRepeating, 'Найдены повторяющиеся хеш-теги', 1, true);
+formValidator.addValidator(commentInput, validateComment, 'Слишком длинный комментарий!', 1, true);
 
 imageUploadForm.addEventListener('reset', () => {
 
