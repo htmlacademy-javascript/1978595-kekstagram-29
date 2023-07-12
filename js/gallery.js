@@ -24,7 +24,6 @@ const createThumbnail = (picture) => {
 
   newPicture.querySelector('.picture').addEventListener('click', (event) => {
     event.preventDefault();
-    //openModal(pictureWindow);
     renderModal(picture);
   });
 
