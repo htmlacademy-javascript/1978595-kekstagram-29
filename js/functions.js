@@ -1,10 +1,12 @@
+//git-ignored
+
 /**
  *Функция для проверки длины строки. Она принимает строку string, которую нужно проверить, и максимальную длину strLengthMax и возвращает true, если строка меньше или равна указанной длине, и false, если строка длиннее.
  * @param {string} string
  * @param {number} strLengthMax
  * @returns {boolean}
  */
-const isShorter = (string = '', strLengthMax = 0) => string.length <= strLengthMax;
+export const isShorter = (string = '', strLengthMax = 0) => string.length <= strLengthMax;
 
 
 //Функция для проверки, является ли строка палиндромом.
@@ -14,7 +16,7 @@ const isShorter = (string = '', strLengthMax = 0) => string.length <= strLengthM
  * @param {string | number} value
  * @returns {boolean}
  */
-const isPalindrome = (value) => {
+export const isPalindrome = (value) => {
 
   value = String(value).replaceAll(' ','').toLowerCase();
 
@@ -78,7 +80,7 @@ const parseTime = (time) => {
  * @param {number} meetingDuration - время в минутах
  * @returns {boolean}
  */
-const isWithinWorkingDay = (workStart, workEnd, meetingStart, meetingDuration) => {
+export const isWithinWorkingDay = (workStart, workEnd, meetingStart, meetingDuration) => {
 
   const workStartTime = parseTime(workStart);
   const workEndTime = parseTime(workEnd);
@@ -90,10 +92,4 @@ const isWithinWorkingDay = (workStart, workEnd, meetingStart, meetingDuration) =
   );
 };
 
-export {isWithinWorkingDay};
-
-
-isShorter();
-isPalindrome(123321);
-parseDigits('es2022');
 

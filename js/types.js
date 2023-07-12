@@ -14,3 +14,17 @@
  * @prop {string} message
  * @prop {string} name
  */
+
+/**
+ * @typedef GraphicEffect
+ * @prop {string} style
+ * @prop {number} step
+ * @prop {number} min
+ * @prop {number} max
+ * @prop {string} unit
+ */
+
+/**
+ * @typedef GraphicEffectObject
+ * @type {Object.<string, GraphicEffect>}
+ */
