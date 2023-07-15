@@ -1,3 +1,4 @@
+//git-ignored
 import { getRandomInteger, getUnicRandomId } from './utils/random-numbers-generation.js';
 
 const PICTURE_COUNT = 25;
