@@ -1,4 +1,3 @@
-//git-ignored
 /**
  * Генерирует случайное число из диапазона от min до max.
  * @param {number} min

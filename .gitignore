@@ -13,5 +13,4 @@ Thumbs.db
 js/functions.js
 queries.http
 js/data.js
-js/utils/random-numbers-generation.js
 js/utils/data-comparation.js
