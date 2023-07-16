@@ -5,18 +5,38 @@ import { resetEffect } from './effects-set.js';
 import { request } from '../utils/data-requesting.js';
 import { showMessage } from '../message-modal.js';
 
+
 const uploadNewButton = /**@type {HTMLInputElement} */(document.querySelector('.img-upload__input'));
+
+const FILE_TYPES = uploadNewButton.getAttribute('accept').split(', ');
 
 const uploadNewModal = document.querySelector('.img-upload__overlay');
 
+/**
+ * @type {HTMLImageElement}
+ */
+const uploadPreview = uploadNewModal.querySelector('.img-upload__preview img');
+
 const imageUploadForm = /** @type {HTMLFormElement} */(document.querySelector('.img-upload__form'));
 
-const /**@type {HTMLButtonElement} */submit = imageUploadForm.querySelector('.img-upload__submit');
+const /**@type {HTMLButtonElement} */submitButton = imageUploadForm.querySelector('.img-upload__submit');
 
 uploadNewButton.addEventListener('change', () => {
 
-  openModal(uploadNewModal);
+  const file = uploadNewButton.files[0];
 
+  try {
+    if (!(FILE_TYPES.some((ext) => file.name.endsWith(ext)))) {
+      throw (new Error('Неподдерживаемый тип файла'));
+
+    } else {
+
+      uploadPreview.src = URL.createObjectURL(file);
+      openModal(uploadNewModal);
+    }
+  } catch (error) {
+    showMessage('error', error.message);
+  }
 });
 
 imageUploadForm.addEventListener('reset', () => {
@@ -40,16 +60,16 @@ const sendFormData = async () => {
 const formSubmitHandler = async (event) => {
   event.preventDefault();
   try {
-    submit.disabled = true;
+    submitButton.disabled = true;
     await sendFormData();
-    submit.disabled = false;
+    submitButton.disabled = false;
     showMessage('success', 'Изображение успешно загружено');
     imageUploadForm.reset();
     closeModal(uploadNewModal);
   } catch {
     showMessage('error', 'Ошибка загрузки файла');
   } finally {
-    submit.disabled = false;
+    submitButton.disabled = false;
   }
 };
 

@@ -39,4 +39,12 @@ const renderGallery = (data) => {
   pictureContainer.append(...newThumbnails);
 };
 
-export {renderGallery};
+const clearGallery = () => {
+  const count = pictureContainer.querySelectorAll('.picture').length;
+  for (let i = 0; i < count; i++) {
+    pictureContainer.querySelector('.picture').remove();
+  }
+};
+
+
+export {renderGallery, clearGallery};

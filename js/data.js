@@ -1,5 +1,5 @@
 //git-ignored
-import { getRandomInteger, getUnicRandomId } from './utils/random-numbers-generation.js';
+import { getRandomInteger, getUnicRandomNumber } from './utils/random-numbers-generation.js';
 
 const PICTURE_COUNT = 25;
 const COMMENT_COUNT_MIN = 0;
@@ -35,15 +35,15 @@ const descriptions = [
 /**
  * Генерирует случайный уникальный идентификатор для фотографии
  */
-const getPhotoId = getUnicRandomId(1,PICTURE_COUNT);
+const getPhotoId = getUnicRandomNumber(1,PICTURE_COUNT);
 /**
  * Генерирует случайный уникальный идентификатор для подстановки в путь к фотографии
  */
-const getIdForUrl = getUnicRandomId(1,PICTURE_COUNT);
+const getIdForUrl = getUnicRandomNumber(1,PICTURE_COUNT);
 /**
  * Генерирует случайный уникальный идентификатор для комментария
  */
-const getCommentId = getUnicRandomId(1,10000);
+const getCommentId = getUnicRandomNumber(1,10000);
 
 /**
  * Генерирует объект, содержащий комментарий к фотографии
