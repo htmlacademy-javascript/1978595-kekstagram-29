@@ -1,8 +1,11 @@
 import { clearGallery, renderGallery } from './gallery.js';
 import { request } from './utils/data-requesting.js';
-import { debounce, throttle } from './utils/optimization.js';
+import { debounce } from './utils/optimization.js';
 import { getSomeRandomNumbers } from './utils/random-numbers-generation.js';
 
+/**
+ * Задержка отрисовки
+ */
 const RERENDER_DELAY = 500;
 
 /**
@@ -12,29 +15,41 @@ const RANDOM_MAX = 10;
 
 const data = await request('https://29.javascript.pages.academy/kekstagram/data');
 
+/**
+ * Панель с фильтрами
+ */
 const filters = document.querySelector('.img-filters');
 
 const defaultButton = filters.querySelector('#filter-default');
 const randomButton = filters.querySelector('#filter-random');
 const discussedButton = filters.querySelector('#filter-discussed');
 
+/**
+ * Снимает скрывающий класс с панели с фильтрами
+ */
 const showFilters = () => {
   filters.classList.remove('img-filters--inactive');
 };
 
+/**
+ * Мениет стиль активного фильтра
+ * @param {HTMLButtonElement} button
+ */
 const changeActive = (button) => {
   filters.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
   button.classList.add('img-filters__button--active');
 };
 
+/**
+ * Перерисовывает галерею
+ * @param {Array<Picture>} newData
+ */
 const rerenderGallery = (newData) => {
   clearGallery();
   renderGallery(newData);
 };
 
 const debouncedRerenderGallery = debounce(rerenderGallery, RERENDER_DELAY);
-
-const throttledRerenderGallery = throttle(rerenderGallery, RERENDER_DELAY);
 
 const defaultClickHandler = (event) => {
   debouncedRerenderGallery(data);
@@ -46,7 +61,7 @@ const randomClickHandler = (event) => {
   //console.log(randomIndexes);
   const randomData = data.filter((element, index) => randomIndexes.includes(index));
   //console.log(newData);
-  throttledRerenderGallery(randomData);
+  debouncedRerenderGallery(randomData);
   changeActive(event.target);
 };
 
@@ -54,7 +69,7 @@ const discussedClickHandler = (event) => {
   const copiedData = structuredClone(data);
   copiedData.sort((pic1, pic2) => pic2.comments.length - pic1.comments.length);
   //console.log(data);
-  throttledRerenderGallery(copiedData);
+  debouncedRerenderGallery(copiedData);
   changeActive(event.target);
 };
 
@@ -62,4 +77,4 @@ defaultButton.addEventListener('click', defaultClickHandler);
 randomButton.addEventListener('click', randomClickHandler);
 discussedButton.addEventListener('click', discussedClickHandler);
 
-export {showFilters};
+export { showFilters };

@@ -5,14 +5,18 @@ import { resetEffect } from './effects-set.js';
 import { request } from '../utils/data-requesting.js';
 import { showMessage } from '../message-modal.js';
 
-
-const uploadNewButton = /**@type {HTMLInputElement} */(document.querySelector('.img-upload__input'));
+/**
+ * Кнопка загрузки нового изображения
+ * @type {HTMLInputElement}
+ */
+const uploadNewButton = document.querySelector('.img-upload__input');
 
 const FILE_TYPES = uploadNewButton.getAttribute('accept').split(', ');
 
 const uploadNewModal = document.querySelector('.img-upload__overlay');
 
 /**
+ * Загружаемое на сервер изображение
  * @type {HTMLImageElement}
  */
 const uploadPreview = uploadNewModal.querySelector('.img-upload__preview img');
