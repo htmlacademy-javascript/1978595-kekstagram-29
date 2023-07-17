@@ -11,7 +11,7 @@ const RERENDER_DELAY = 500;
 /**
  * Количество одновременно отображаемых случайных фотографий
  */
-const RANDOM_MAX = 10;
+const RANDOM_LIMIT = 10;
 
 const data = await request('https://29.javascript.pages.academy/kekstagram/data');
 
@@ -49,7 +49,7 @@ const defaultClickHandler = (event) => {
 };
 
 const randomClickHandler = (event) => {
-  const randomIndexes = getSomeRandomNumbers(0, data.length - 1, RANDOM_MAX);
+  const randomIndexes = getSomeRandomNumbers(0, data.length - 1, RANDOM_LIMIT);
   //console.log(randomIndexes);
   const randomData = data.filter((element, index) => randomIndexes.includes(index));
   //console.log(newData);
