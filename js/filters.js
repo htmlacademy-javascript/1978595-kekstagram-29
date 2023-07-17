@@ -1,18 +1,10 @@
-import { rerenderGallery } from './gallery.js';
-import { request } from './utils.js';
-import { debounce } from './utils.js';
-
-/**
- * Задержка отрисовки
- */
-const RERENDER_DELAY = 500;
+import { debouncedRerenderGallery } from './gallery.js';
+import { data } from './main.js';
 
 /**
  * Количество одновременно отображаемых случайных фотографий
  */
 const RANDOM_LIMIT = 10;
-
-const data = await request('https://29.javascript.pages.academy/kekstagram/data');
 
 /**
  * Панель с фильтрами
@@ -40,8 +32,6 @@ const changeActive = (button) => {
 };
 
 
-const debouncedRerenderGallery = debounce(rerenderGallery, RERENDER_DELAY);
-
 const defaultClickHandler = (event) => {
   debouncedRerenderGallery(data);
   changeActive(event.target);
@@ -57,7 +47,6 @@ const randomClickHandler = (event) => {
 const discussedClickHandler = (event) => {
   const copiedData = structuredClone(data);
   copiedData.sort((pic1, pic2) => pic2.comments.length - pic1.comments.length);
-  //console.log(data);
   debouncedRerenderGallery(copiedData);
   changeActive(event.target);
 };

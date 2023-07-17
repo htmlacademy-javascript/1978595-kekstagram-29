@@ -1,4 +1,13 @@
+import { showFilters } from './filters.js';
 import { renderModal } from './gallery-modal.js';
+import { request, debounce } from './utils.js';
+import { showMessage } from './message-modal.js';
+
+/**
+ * Задержка отрисовки
+ */
+const RERENDER_DELAY = 500;
+
 
 const pictureContainer = document.querySelector('.pictures');
 /**
@@ -54,5 +63,20 @@ const rerenderGallery = (newData) => {
   renderGallery(newData);
 };
 
+const debouncedRerenderGallery = debounce(rerenderGallery, RERENDER_DELAY);
 
-export {renderGallery, clearGallery, rerenderGallery};
+const initGallery = async (url) => {
+  try {
+    const data = await request(url);
+    renderGallery(data);
+    showFilters();
+    return data;
+  } catch {
+    showMessage('error', 'Не могу получить данные с сервера');
+    const data = [];
+    return data;
+  }
+};
+
+
+export {renderGallery, clearGallery, rerenderGallery, initGallery, debouncedRerenderGallery};
