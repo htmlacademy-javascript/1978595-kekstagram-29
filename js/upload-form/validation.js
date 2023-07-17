@@ -1,4 +1,4 @@
-import { segmentWords } from '../utils/string-parsing.js';
+import { segmentWords } from '../utils.js';
 
 const MAX_HASHTAG_COUNT = 5;
 const MAX_COMMENT_LENGTH = 140;

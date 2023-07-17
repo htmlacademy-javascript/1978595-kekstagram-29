@@ -2,7 +2,7 @@ import { showFilters } from './filters.js';
 import { renderGallery } from './gallery.js';
 import { showMessage } from './message-modal.js';
 import './upload-form/upload-form.js';
-import { request } from './utils/data-requesting.js';
+import { request } from './utils.js';
 
 
 try {

@@ -1,7 +1,6 @@
 import { rerenderGallery } from './gallery.js';
-import { request } from './utils/data-requesting.js';
-import { debounce } from './utils/optimization.js';
-import { getSomeRandomNumbers } from './utils/random-numbers-generation.js';
+import { request } from './utils.js';
+import { debounce } from './utils.js';
 
 /**
  * Задержка отрисовки
@@ -49,10 +48,8 @@ const defaultClickHandler = (event) => {
 };
 
 const randomClickHandler = (event) => {
-  const randomIndexes = getSomeRandomNumbers(0, data.length - 1, RANDOM_LIMIT);
-  //console.log(randomIndexes);
-  const randomData = data.filter((element, index) => randomIndexes.includes(index));
-  //console.log(newData);
+  const copiedData = structuredClone(data);
+  const randomData = copiedData.sort(() => Math.random() - 0.5).splice(0, RANDOM_LIMIT);
   debouncedRerenderGallery(randomData);
   changeActive(event.target);
 };
