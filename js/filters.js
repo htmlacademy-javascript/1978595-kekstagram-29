@@ -1,6 +1,6 @@
 import { rerenderGallery } from './gallery.js';
-import { request } from './utils.js';
 import { debounce } from './utils.js';
+import { data } from './main.js';
 
 /**
  * Задержка отрисовки
@@ -12,7 +12,7 @@ const RERENDER_DELAY = 500;
  */
 const RANDOM_LIMIT = 10;
 
-const data = await request('https://29.javascript.pages.academy/kekstagram/data');
+// const data = await request('https://29.javascript.pages.academy/kekstagram/data');
 
 /**
  * Панель с фильтрами
