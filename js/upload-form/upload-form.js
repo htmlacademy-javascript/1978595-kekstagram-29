@@ -66,7 +66,6 @@ const formSubmitHandler = async (event) => {
   try {
     submitButton.disabled = true;
     await sendFormData();
-    submitButton.disabled = false;
     showMessage('success', 'Изображение успешно загружено');
     imageUploadForm.reset();
     closeModal(uploadNewModal);

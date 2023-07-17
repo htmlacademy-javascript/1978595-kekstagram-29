@@ -40,11 +40,19 @@ const renderGallery = (data) => {
 };
 
 const clearGallery = () => {
-  const count = pictureContainer.querySelectorAll('.picture').length;
-  for (let i = 0; i < count; i++) {
-    pictureContainer.querySelector('.picture').remove();
-  }
+
+  pictureContainer.querySelectorAll('.picture').forEach((el) => el.remove());
+
+};
+
+/**
+ * Перерисовывает галерею
+ * @param {Array<Picture>} newData
+ */
+const rerenderGallery = (newData) => {
+  clearGallery();
+  renderGallery(newData);
 };
 
 
-export {renderGallery, clearGallery};
+export {renderGallery, clearGallery, rerenderGallery};

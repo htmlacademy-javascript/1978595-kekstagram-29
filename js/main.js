@@ -1,4 +1,4 @@
-import { showFilters } from './filter.js';
+import { showFilters } from './filters.js';
 import { renderGallery } from './gallery.js';
 import { showMessage } from './message-modal.js';
 import './upload-form/upload-form.js';

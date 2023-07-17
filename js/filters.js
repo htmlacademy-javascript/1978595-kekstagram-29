@@ -1,4 +1,4 @@
-import { clearGallery, renderGallery } from './gallery.js';
+import { rerenderGallery } from './gallery.js';
 import { request } from './utils/data-requesting.js';
 import { debounce } from './utils/optimization.js';
 import { getSomeRandomNumbers } from './utils/random-numbers-generation.js';
@@ -40,14 +40,6 @@ const changeActive = (button) => {
   button.classList.add('img-filters__button--active');
 };
 
-/**
- * Перерисовывает галерею
- * @param {Array<Picture>} newData
- */
-const rerenderGallery = (newData) => {
-  clearGallery();
-  renderGallery(newData);
-};
 
 const debouncedRerenderGallery = debounce(rerenderGallery, RERENDER_DELAY);
 
