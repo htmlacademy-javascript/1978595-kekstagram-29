@@ -39,4 +39,20 @@ const renderGallery = (data) => {
   pictureContainer.append(...newThumbnails);
 };
 
-export {renderGallery};
+const clearGallery = () => {
+
+  pictureContainer.querySelectorAll('.picture').forEach((el) => el.remove());
+
+};
+
+/**
+ * Перерисовывает галерею
+ * @param {Array<Picture>} newData
+ */
+const rerenderGallery = (newData) => {
+  clearGallery();
+  renderGallery(newData);
+};
+
+
+export {renderGallery, clearGallery, rerenderGallery};

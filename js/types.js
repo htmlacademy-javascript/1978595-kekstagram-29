@@ -28,3 +28,7 @@
  * @typedef GraphicEffectObject
  * @type {Object.<string, GraphicEffect>}
  */
+
+/**
+ * @typedef  {'error' | 'success'} messageType
+ */

@@ -16,7 +16,7 @@ const getRandomInteger = (min, max) => {
  * @param {number} max
  * @returns {() => number}
  */
-const getUnicRandomId = (min, max) => {
+const getUnicRandomNumber = (min, max) => {
   /**
    * @type {number[]}
    */
@@ -35,4 +35,20 @@ const getUnicRandomId = (min, max) => {
   };
 };
 
-export {getRandomInteger, getUnicRandomId};
+/**
+ * Возвращает массив из count уникальных случайных чисел из диапазона от min до max
+ * @param {number} min
+ * @param {number} max
+ * @param {number} count
+ * @return {Array<number>}
+ */
+const getSomeRandomNumbers = (min, max, count) => {
+  const someRandomNumbers = [];
+  const getUnicNumber = getUnicRandomNumber(min, max);
+  for (let i = 0; i < count; i++) {
+    someRandomNumbers.push(getUnicNumber());
+  }
+  return someRandomNumbers;
+};
+
+export {getRandomInteger, getUnicRandomNumber, getSomeRandomNumbers};

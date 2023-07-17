@@ -35,12 +35,9 @@ const setEffect = (effect) => {
     range: {min: min, max:max},
     step: step,
     format: {
-      to: function (value) {
-        return `${style}(${value}${unit})`;
-      },
-      from: function (value) {
-        return Number.parseFloat(value);
-      }}
+      to: (value) => `${style}(${value}${unit})`,
+      from: (value) => Number.parseFloat(value)
+    }
   });
   pictureImage.style.filter = effectSlider.noUiSlider.get();
   effectInput.value = effectSlider.noUiSlider.get(true);
@@ -61,12 +58,10 @@ effectFieldSet.addEventListener('change', (event) => {
 
   currentEffect = /** @type {HTMLInputElement}*/(event.target).value;
 
-  switch (currentEffect) {
-
-    case 'none': resetEffect(); break;
-
-    default: setEffect(currentEffect);
-
+  if (currentEffect === 'none') {
+    resetEffect();
+  } else {
+    setEffect(currentEffect);
   }
 
 });
