@@ -30,6 +30,7 @@ const resetEffect = () => {
 const setEffect = (effect) => {
   sliderContainer.classList.remove('hidden');
   const {max, min, step, unit, style} = Effects[effect];
+
   effectSlider.noUiSlider.updateOptions({
     start: max,
     range: {min: min, max:max},
@@ -46,7 +47,6 @@ const setEffect = (effect) => {
 const changeEffectLevel = () => {
   const level = effectSlider.noUiSlider.get(true);
   effectInput.value = level;
-  //console.log(effectSlider.noUiSlider.get());
   pictureImage.style.filter = effectSlider.noUiSlider.get();
 };
 

@@ -2,7 +2,7 @@ import { closeModal, openModal } from '../modal.js';
 import { formValidator } from './validation.js';
 import { resetScale } from './scaling.js';
 import { resetEffect } from './effects-set.js';
-import { request } from '../utils/data-requesting.js';
+import { request } from '../utils.js';
 import { showMessage } from '../message-modal.js';
 
 /**
