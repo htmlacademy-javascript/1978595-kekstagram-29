@@ -32,7 +32,7 @@ const showFilters = () => {
 };
 
 /**
- * Мениет стиль активного фильтра
+ * Меняет стиль активного фильтра
  * @param {HTMLButtonElement} button
  */
 const changeActive = (button) => {

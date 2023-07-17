@@ -29,18 +29,16 @@ uploadNewButton.addEventListener('change', () => {
 
   const file = uploadNewButton.files[0];
 
-  try {
-    if (!(FILE_TYPES.some((ext) => file.name.endsWith(ext)))) {
-      throw (new Error('Неподдерживаемый тип файла'));
+  if (!(FILE_TYPES.some((ext) => file.name.endsWith(ext)))) {
 
-    } else {
+    showMessage('error', 'Неподдерживаемый тип файла');
 
-      uploadPreview.src = URL.createObjectURL(file);
-      openModal(uploadNewModal);
-    }
-  } catch (error) {
-    showMessage('error', error.message);
+  } else {
+
+    uploadPreview.src = URL.createObjectURL(file);
+    openModal(uploadNewModal);
   }
+
 });
 
 imageUploadForm.addEventListener('reset', () => {
