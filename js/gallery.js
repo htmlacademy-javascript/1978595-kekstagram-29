@@ -1,7 +1,5 @@
-import { showFilters } from './filters.js';
 import { renderModal } from './gallery-modal.js';
-import { request, debounce } from './utils.js';
-import { showMessage } from './message-modal.js';
+import { debounce } from './utils.js';
 
 /**
  * Задержка отрисовки
@@ -68,18 +66,5 @@ const rerenderGallery = (newData) => {
  */
 const debouncedRerenderGallery = debounce(rerenderGallery, RERENDER_DELAY);
 
-const initGallery = async (url) => {
-  try {
-    const data = await request(url);
-    renderGallery(data);
-    showFilters();
-    return data;
-  } catch {
-    showMessage('error', 'Не могу получить данные с сервера');
-    const data = [];
-    return data;
-  }
-};
 
-
-export {renderGallery, clearGallery, rerenderGallery, initGallery, debouncedRerenderGallery};
+export {renderGallery, clearGallery, rerenderGallery, debouncedRerenderGallery};
