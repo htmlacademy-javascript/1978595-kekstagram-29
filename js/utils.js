@@ -12,8 +12,15 @@ async function request(url, options) {
   return response.json();
 }
 
+/**
+ * @template {Function} T
+ * @param {T} callback
+ * @param {number} timeoutDelay
+ * @returns {T}
+ */
 const debounce = (callback, timeoutDelay) => {
   let timeoutId;
+  //@ts-ignore
   return (...rest) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);

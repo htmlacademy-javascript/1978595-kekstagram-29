@@ -26,9 +26,14 @@
 
 /**
  * @typedef GraphicEffectObject
- * @type {Object.<string, GraphicEffect>}
+ * @type {Object.<EffectType, GraphicEffect>}
  */
 
 /**
- * @typedef  {'error' | 'success'} messageType
+ * @typedef  {'error' | 'success'} MessageType
  */
+
+/**
+ * @typedef {'none' | 'chrome' | 'sepia' | 'marvin' | 'phobos' | 'heat'} EffectType
+ */
+

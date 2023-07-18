@@ -1,3 +1,6 @@
+/**
+ * @type {GraphicEffectObject}
+ */
 export const Effects = {
   none: {
 

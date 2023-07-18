@@ -1,18 +1,25 @@
 import { Effects } from './effects.js';
 
-const imageUploadForm = /** @type {HTMLFormElement} */(document.querySelector('.img-upload__form'));
+/**
+ * Форма загрузки нового изображения
+ * @type {HTMLFormElement}
+ */
+const imageUploadForm = document.querySelector('.img-upload__form');
 
 const sliderContainer = imageUploadForm.querySelector('.img-upload__effect-level');
 
 const effectSlider = imageUploadForm.querySelector('.effect-level__slider');
 
-const effectFieldSet = /** @type {HTMLFieldSetElement}*/(imageUploadForm.querySelector('.effects'));
+/** @type {HTMLFieldSetElement}*/
+const effectFieldSet = imageUploadForm.querySelector('.effects');
 
-const pictureImage = /** @type {HTMLImageElement} */(imageUploadForm.querySelector('.img-upload__preview img'));
+/** @type {HTMLImageElement} */
+const pictureImage = imageUploadForm.querySelector('.img-upload__preview img');
 
-const effectInput = /** @type {HTMLInputElement} */(imageUploadForm.querySelector('.effect-level__value'));
+/** @type {HTMLInputElement} */
+const effectInput = imageUploadForm.querySelector('.effect-level__value');
 
-//@ts-ignore
+
 noUiSlider.create (effectSlider, {
   start: [100],
   range: {min: [0], max: [0]},
@@ -20,13 +27,21 @@ noUiSlider.create (effectSlider, {
   connect: 'lower'
 });
 
+/**@type {EffectType} */
 let currentEffect = 'none';
 
+/**
+ * Возвращает слайдер к 100%
+ */
 const resetEffect = () => {
   sliderContainer.classList.add('hidden');
   pictureImage.style.filter = 'none';
 };
 
+/**
+ * Переключает эффект на выбранный
+ * @param {EffectType} effect
+ */
 const setEffect = (effect) => {
   sliderContainer.classList.remove('hidden');
   const {max, min, step, unit, style} = Effects[effect];
@@ -44,6 +59,9 @@ const setEffect = (effect) => {
   effectInput.value = effectSlider.noUiSlider.get(true);
 };
 
+/**
+ * Меняет уровень эффекта при перемешении слайдера
+ */
 const changeEffectLevel = () => {
   const level = effectSlider.noUiSlider.get(true);
   effectInput.value = level;
@@ -56,7 +74,7 @@ effectSlider.noUiSlider.on('update', () => changeEffectLevel());
 
 effectFieldSet.addEventListener('change', (event) => {
 
-  currentEffect = /** @type {HTMLInputElement}*/(event.target).value;
+  currentEffect = /**@type {EffectType} */(/** @type {HTMLInputElement} */(event.target).value);
 
   if (currentEffect === 'none') {
     resetEffect();

@@ -71,10 +71,10 @@ imageUploadForm.addEventListener('input', () => {
 
 });
 
-formValidator.addValidator(hashTagInput, validateCount, 'Превышено число хеш-тегов', 1, true);
-formValidator.addValidator(hashTagInput, validatePattern, 'Один из хеш-тегов некорректный', 1, true);
-formValidator.addValidator(hashTagInput, validateRepeating, 'Найдены повторяющиеся хеш-теги', 1, true);
-formValidator.addValidator(commentInput, validateComment, 'Слишком длинный комментарий!', 1, true);
+formValidator.addValidator(hashTagInput, validateCount, 'Превышено число хеш-тегов');
+formValidator.addValidator(hashTagInput, validatePattern, 'Один из хеш-тегов некорректный');
+formValidator.addValidator(hashTagInput, validateRepeating, 'Найдены повторяющиеся хеш-теги');
+formValidator.addValidator(commentInput, validateComment, 'Слишком длинный комментарий!');
 
 imageUploadForm.addEventListener('reset', () => {
 

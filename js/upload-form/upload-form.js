@@ -57,6 +57,9 @@ imageUploadForm.addEventListener('modal::hide', () => {
   imageUploadForm.reset();
 }, true);
 
+/**
+ * Отправляет данные на сервер
+ */
 const sendFormData = async () => {
   const url = imageUploadForm.getAttribute('action');
   const method = imageUploadForm.getAttribute('method');
@@ -65,8 +68,16 @@ const sendFormData = async () => {
   await request(url, {method, body});
 };
 
+/**
+ * Обработчик клика по кнопке загрузки нового изображения на сервер
+ * @param {SubmitEvent} event
+ * @returns {Promise}
+ */
 const formSubmitHandler = async (event) => {
   event.preventDefault();
+  if (!formValidator.validate) {
+    return;
+  }
   try {
     submitButton.disabled = true;
     await sendFormData();

@@ -1,9 +1,17 @@
+/**
+ * Обработчик клика по кнопке окна Сообщения или за пределами окна
+ * @param {MouseEvent & {target: Element, currentTarget: Element}} event
+ */
 const messageClickHandler = (event) => {
   if (event.target.matches('section, button')) {
     hideMessage(event.currentTarget);
   }
 };
 
+/**
+ * Обработчик нажатия на клавишу Esc
+ * @param {KeyboardEvent} event
+ */
 const keydownHandler = (event) => {
   if (event.key === 'Escape') {
     hideMessage(document.querySelector('.success, .error'));
@@ -11,12 +19,21 @@ const keydownHandler = (event) => {
   }
 };
 
+/**
+ * Скрывает окно с сообщением
+ * @param {Element} modal
+ */
 function hideMessage(modal) {
   modal.remove();
   document.removeEventListener('keydown', keydownHandler, true);
   modal.removeEventListener('click', messageClickHandler);
 }
 
+/**
+ * Отрисовывает окно типа type с сообщением title
+ * @param {MessageType} type
+ * @param {string} title
+ */
 const showMessage = (type, title) => {
   /**
    * @type {HTMLTemplateElement}

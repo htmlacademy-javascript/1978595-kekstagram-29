@@ -31,19 +31,30 @@ const changeActive = (button) => {
   button.classList.add('img-filters__button--active');
 };
 
-
+/**
+ * Обрабатывает клик по кнопке фильтра "По-умолчанию"
+ * @param MouseEvent & {target: Element}
+ */
 const defaultClickHandler = (event) => {
   debouncedRerenderGallery(data);
   changeActive(event.target);
 };
 
-const randomClickHandler = async (event) => {
+/**
+ * Обрабатывает клик по кнопке фильтра "Случайные"
+ * @param MouseEvent & {target: Element}
+ */
+const randomClickHandler = (event) => {
   const copiedData = structuredClone(data);
   const randomData = copiedData.sort(() => Math.random() - 0.5).splice(0, RANDOM_LIMIT);
   debouncedRerenderGallery(randomData);
   changeActive(event.target);
 };
 
+/**
+ * Обрабатывает клик по кнопке фильтра "Обсуждаемые"
+ * @param MouseEvent & {target: Element}
+ */
 const discussedClickHandler = (event) => {
   const copiedData = structuredClone(data);
   copiedData.sort((pic1, pic2) => pic2.comments.length - pic1.comments.length);

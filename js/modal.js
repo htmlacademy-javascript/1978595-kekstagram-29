@@ -26,6 +26,7 @@ const modalClickHandler = (event) => {
 };
 
 /**
+ *
  * @param {Element} modal
  */
 function openModal(modal) {

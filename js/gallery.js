@@ -50,7 +50,7 @@ const renderGallery = (data) => {
 
 const clearGallery = () => {
 
-  pictureContainer.querySelectorAll('.picture').forEach((el) => el.remove());
+  pictureContainer.querySelectorAll('.picture').forEach((element) => element.remove());
 
 };
 
@@ -63,6 +63,9 @@ const rerenderGallery = (newData) => {
   renderGallery(newData);
 };
 
+/**
+ * Перерисовывает галерею с задержкой после последнего клика
+ */
 const debouncedRerenderGallery = debounce(rerenderGallery, RERENDER_DELAY);
 
 const initGallery = async (url) => {
