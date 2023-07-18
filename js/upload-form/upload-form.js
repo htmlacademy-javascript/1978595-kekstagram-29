@@ -75,7 +75,7 @@ const sendFormData = async () => {
  */
 const formSubmitHandler = async (event) => {
   event.preventDefault();
-  if (!formValidator.validate) {
+  if (!formValidator.validate()) {
     return;
   }
   try {
