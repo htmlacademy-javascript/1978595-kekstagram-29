@@ -37,7 +37,7 @@ const defaultClickHandler = (event) => {
   changeActive(event.target);
 };
 
-const randomClickHandler = (event) => {
+const randomClickHandler = async (event) => {
   const copiedData = structuredClone(data);
   const randomData = copiedData.sort(() => Math.random() - 0.5).splice(0, RANDOM_LIMIT);
   debouncedRerenderGallery(randomData);

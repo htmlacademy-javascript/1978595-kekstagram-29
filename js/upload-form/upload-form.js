@@ -23,6 +23,8 @@ const uploadPreview = uploadNewModal.querySelector('.img-upload__preview img');
 
 const imageUploadForm = /** @type {HTMLFormElement} */(document.querySelector('.img-upload__form'));
 
+const effectPreviews = /** @type {NodeListOf<HTMLSpanElement>} */(imageUploadForm.querySelectorAll('.effects__preview'));
+
 const /**@type {HTMLButtonElement} */submitButton = imageUploadForm.querySelector('.img-upload__submit');
 
 uploadNewButton.addEventListener('change', () => {
@@ -35,7 +37,11 @@ uploadNewButton.addEventListener('change', () => {
 
   } else {
 
-    uploadPreview.src = URL.createObjectURL(file);
+    const fileURL = URL.createObjectURL(file);
+    uploadPreview.src = fileURL;
+    effectPreviews.forEach((el) => {
+      el.style.setProperty('background-image', `url(${fileURL})`);
+    });
     openModal(uploadNewModal);
   }
 
