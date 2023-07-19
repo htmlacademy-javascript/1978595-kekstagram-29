@@ -13,5 +13,5 @@ try {
   renderGallery(data);
   initFilters(data);
 } catch {
-  showMessage('error', 'Не могу получить данные с сервера');
+  showMessage('error', 'Не могу получить данные с сервера', 'Закрыть');
 }

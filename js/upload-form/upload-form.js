@@ -33,7 +33,8 @@ uploadNewButton.addEventListener('change', () => {
 
   if (!(FILE_TYPES.some((ext) => file.name.endsWith(ext)))) {
 
-    showMessage('error', 'Неподдерживаемый тип файла');
+    showMessage('error', 'Неподдерживаемый тип файла', 'Закрыть');
+    imageUploadForm.reset();
 
   } else {
 
@@ -81,11 +82,11 @@ const formSubmitHandler = async (event) => {
   try {
     submitButton.disabled = true;
     await sendFormData();
-    showMessage('success', 'Изображение успешно загружено');
+    showMessage('success', 'Изображение успешно загружено', 'OK');
     imageUploadForm.reset();
     closeModal(uploadNewModal);
   } catch {
-    showMessage('error', 'Ошибка загрузки файла');
+    showMessage('error', 'Ошибка загрузки файла', 'Попробовать еще раз');
   } finally {
     submitButton.disabled = false;
   }
