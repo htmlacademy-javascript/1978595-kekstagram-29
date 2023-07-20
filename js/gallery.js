@@ -1,7 +1,5 @@
-import { showFilters } from './filters.js';
 import { renderModal } from './gallery-modal.js';
-import { request, debounce } from './utils.js';
-import { showMessage } from './message-modal.js';
+import { debounce } from './utils.js';
 
 /**
  * Задержка отрисовки
@@ -48,10 +46,12 @@ const renderGallery = (data) => {
   pictureContainer.append(...newThumbnails);
 };
 
+/**
+ * Удаляет все элементы из галереи
+ */
 const clearGallery = () => {
 
-  pictureContainer.querySelectorAll('.picture').forEach((el) => el.remove());
-
+  pictureContainer.querySelectorAll('.picture').forEach((element) => element.remove());
 };
 
 /**
@@ -63,20 +63,10 @@ const rerenderGallery = (newData) => {
   renderGallery(newData);
 };
 
+/**
+ * Перерисовывает галерею с задержкой после последнего клика
+ */
 const debouncedRerenderGallery = debounce(rerenderGallery, RERENDER_DELAY);
 
-const initGallery = async (url) => {
-  try {
-    const data = await request(url);
-    renderGallery(data);
-    showFilters();
-    return data;
-  } catch {
-    showMessage('error', 'Не могу получить данные с сервера');
-    const data = [];
-    return data;
-  }
-};
 
-
-export {renderGallery, clearGallery, rerenderGallery, initGallery, debouncedRerenderGallery};
+export {renderGallery, clearGallery, rerenderGallery, debouncedRerenderGallery};

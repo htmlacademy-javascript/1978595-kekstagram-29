@@ -1,9 +1,9 @@
 /**
  * Проверяет элемент на принадлежность к полям текстового ввода
- * @param {Element} elem
+ * @param {Element} element
  * @returns {boolean}
  */
-const isTextInputFocused = (elem) => elem.matches('input[type="text"], textarea');
+const isTextInputFocused = (element) => element.matches('input[type="text"], textarea');
 
 /**
  * Обработчик нажатия кдавиши Esc
@@ -26,17 +26,19 @@ const modalClickHandler = (event) => {
 };
 
 /**
+ * Открывает модальное окно
  * @param {Element} modal
  */
-function openModal(modal) {
+const openModal = (modal) => {
   modal.classList.remove('hidden');
   modal.addEventListener('click', modalClickHandler);
 
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', keydownHandler);
-}
+};
 
 /**
+ * Закрывает модальное окно
  * @param {Element} modal
  */
 function closeModal (modal) {

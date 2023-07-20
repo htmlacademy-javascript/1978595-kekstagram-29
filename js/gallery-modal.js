@@ -25,7 +25,7 @@ const createComment = (data) => {
 };
 
 /**
- *
+ * Обработчик нажатия на кнопку "Загрузить еще"
  * @param {MouseEvent & {target: Element}} event
  */
 const modalClickHandler = (event) => {
@@ -35,6 +35,7 @@ const modalClickHandler = (event) => {
 };
 
 /**
+ * Отрисовывает комментарии в количестве step
  * @param {Array<PictureComment>} data
  * @param {number} step
  * @return {() => void}
@@ -42,7 +43,7 @@ const modalClickHandler = (event) => {
 const createCommentsRenderer = (data, step = 5) => {
   const discussion = modal.querySelector('.social__comments');
   const loadMoreButton = modal.querySelector('.social__comments-loader');
-  const [commentCount, commentTotal] = modal.querySelectorAll('.comments-count');
+  const [commentCount, commentTotal] = [modal.querySelector('.comments-shown-count'), modal.querySelector('.comments-count')];
 
   data = structuredClone(data);
   discussion.replaceChildren();

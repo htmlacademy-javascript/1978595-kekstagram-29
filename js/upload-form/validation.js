@@ -11,14 +11,10 @@ const imageUploadForm = /** @type {HTMLFormElement} */(document.querySelector('.
 /**Поле ввода хеш-тегов */
 const hashTagInput = /** @type {HTMLInputElement} */(imageUploadForm.querySelector('.text__hashtags'));
 
-/**
- * Поле ввода комментариев
- */
+/** Поле ввода комментариев */
 const commentInput = /** @type {HTMLTextAreaElement} */(imageUploadForm.querySelector('.text__description'));
 
-/**
- * Кнопка отправки
- */
+/** Кнопка отправки */
 const submitButton = /** @type {HTMLButtonElement} */(imageUploadForm.querySelector('.img-upload__submit'));
 
 const pristineConfig = {
@@ -54,8 +50,8 @@ const validatePattern = () => segmentWords(hashTagInput.value).every((element) =
  * @returns {boolean}
  */
 const validateRepeating = () => {
-  const hashTagArray = segmentWords(hashTagInput.value);
-  return hashTagArray.every((element) => hashTagArray.indexOf(element) === hashTagArray.lastIndexOf(element));
+  const hashTags = segmentWords(hashTagInput.value);
+  return hashTags.every((element) => hashTags.indexOf(element) === hashTags.lastIndexOf(element));
 };
 
 /**
@@ -71,10 +67,10 @@ imageUploadForm.addEventListener('input', () => {
 
 });
 
-formValidator.addValidator(hashTagInput, validateCount, 'Превышено число хеш-тегов', 1, true);
-formValidator.addValidator(hashTagInput, validatePattern, 'Один из хеш-тегов некорректный', 1, true);
-formValidator.addValidator(hashTagInput, validateRepeating, 'Найдены повторяющиеся хеш-теги', 1, true);
-formValidator.addValidator(commentInput, validateComment, 'Слишком длинный комментарий!', 1, true);
+formValidator.addValidator(hashTagInput, validateCount, 'Превышено число хеш-тегов');
+formValidator.addValidator(hashTagInput, validatePattern, 'Один из хеш-тегов некорректный');
+formValidator.addValidator(hashTagInput, validateRepeating, 'Найдены повторяющиеся хеш-теги');
+formValidator.addValidator(commentInput, validateComment, 'Слишком длинный комментарий!');
 
 imageUploadForm.addEventListener('reset', () => {
 
