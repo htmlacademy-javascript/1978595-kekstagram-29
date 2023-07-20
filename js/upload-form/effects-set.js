@@ -1,4 +1,4 @@
-import { Effects } from './effects.js';
+import { effects } from './effects.js';
 
 /**
  * Форма загрузки нового изображения
@@ -44,7 +44,7 @@ const resetEffect = () => {
  */
 const setEffect = (effect) => {
   sliderContainer.classList.remove('hidden');
-  const {max, min, step, unit, style} = Effects[effect];
+  const {max, min, step, unit, style} = effects[effect];
 
   effectSlider.noUiSlider.updateOptions({
     start: max,

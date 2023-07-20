@@ -1,7 +1,7 @@
 /**
  * @type {GraphicEffectObject}
  */
-export const Effects = {
+export const effects = {
   none: {
 
     style: 'none',
