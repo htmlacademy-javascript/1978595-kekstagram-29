@@ -19,8 +19,8 @@ const pictureImage = imageUploadForm.querySelector('.img-upload__preview img');
 /** @type {HTMLInputElement} */
 const effectInput = imageUploadForm.querySelector('.effect-level__value');
 
-
-noUiSlider.create (effectSlider, {
+//@ts-ignore
+const slider = noUiSlider.create (effectSlider, {
   start: [100],
   range: {min: [0], max: [0]},
   step: 0,
@@ -46,7 +46,7 @@ const setEffect = (effect) => {
   sliderContainer.classList.remove('hidden');
   const {max, min, step, unit, style} = effects[effect];
 
-  effectSlider.noUiSlider.updateOptions({
+  slider.updateOptions({
     start: max,
     range: {min: min, max:max},
     step: step,
@@ -55,22 +55,22 @@ const setEffect = (effect) => {
       from: (value) => Number.parseFloat(value)
     }
   });
-  pictureImage.style.filter = effectSlider.noUiSlider.get();
-  effectInput.value = effectSlider.noUiSlider.get(true).toFixed(2);
+  pictureImage.style.filter = slider.get();
+  effectInput.value = slider.get(true).toFixed(2);
 };
 
 /**
  * Меняет уровень эффекта при перемешении слайдера
  */
 const changeEffectLevel = () => {
-  const level = effectSlider.noUiSlider.get(true);
+  const level = slider.get(true);
   effectInput.value = level.toFixed(2);
-  pictureImage.style.filter = effectSlider.noUiSlider.get();
+  pictureImage.style.filter = slider.get();
 };
 
 resetEffect();
 
-effectSlider.noUiSlider.on('update', () => changeEffectLevel());
+slider.on('update', () => changeEffectLevel());
 
 effectFieldSet.addEventListener('change', (event) => {
 
