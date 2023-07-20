@@ -29,13 +29,13 @@ const modalClickHandler = (event) => {
  * Открывает модальное окно
  * @param {Element} modal
  */
-function openModal(modal) {
+const openModal = (modal) => {
   modal.classList.remove('hidden');
   modal.addEventListener('click', modalClickHandler);
 
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', keydownHandler);
-}
+};
 
 /**
  * Закрывает модальное окно

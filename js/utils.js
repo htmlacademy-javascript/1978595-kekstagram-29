@@ -4,13 +4,13 @@
  * @param {RequestInit} [options]
  * @returns
  */
-async function request(url, options) {
+const request = async (url, options) => {
   const response = await fetch(url, options);
   if (!response.ok) {
     throw new Error(`Ошибка получения данных!\n${response.status}: ${response.statusText}`);
   }
   return response.json();
-}
+};
 
 /**
  * @template {Function} T
