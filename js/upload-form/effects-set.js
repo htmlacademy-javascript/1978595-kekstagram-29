@@ -56,7 +56,7 @@ const setEffect = (effect) => {
     }
   });
   pictureImage.style.filter = slider.get();
-  effectInput.value = slider.get(true).toFixed(2);
+  effectInput.value = slider.get(true);
 };
 
 /**
@@ -64,7 +64,7 @@ const setEffect = (effect) => {
  */
 const changeEffectLevel = () => {
   const level = slider.get(true);
-  effectInput.value = level.toFixed(2);
+  effectInput.value = level;
   pictureImage.style.filter = slider.get();
 };
 
