@@ -14,7 +14,7 @@ const pictureContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture');
 
 /**
- * Создает разметку для одной миниатюры
+ * Создает DOM-элемент для одной миниатюры
  * @param {Picture} picture - данные одной картинки
  * @returns HTMLAnchorElement - разметка одной миниатюры
  */

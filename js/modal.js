@@ -3,14 +3,14 @@
  * @param {Element} element
  * @returns {boolean}
  */
-const isTextInputFocused = (element) => element.matches('input[type="text"], textarea');
+const isTextField = (element) => element.matches('input[type="text"], textarea');
 
 /**
  * Обработчик нажатия кдавиши Esc
  * @param {KeyboardEvent} event
  */
 const keydownHandler = (event) => {
-  if (event.key === 'Escape' && !isTextInputFocused(document.activeElement)) {
+  if (event.key === 'Escape' && !isTextField(document.activeElement)) {
     closeModal(document.querySelector('.overlay:not(.hidden)'));
   }
 };
