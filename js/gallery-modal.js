@@ -25,7 +25,7 @@ const createComment = (data) => {
 };
 
 /**
- *
+ * Обработчик нажатия на кнопку "Загрузить еще"
  * @param {MouseEvent & {target: Element}} event
  */
 const modalClickHandler = (event) => {
@@ -35,6 +35,7 @@ const modalClickHandler = (event) => {
 };
 
 /**
+ * Отрисовывает комментарии в количестве step
  * @param {Array<PictureComment>} data
  * @param {number} step
  * @return {() => void}

@@ -36,9 +36,8 @@ function hideMessage(modal) {
  * @param {string} buttonText
  */
 const showMessage = (type, title, buttonText) => {
-  /**
-   * @type {HTMLTemplateElement}
-   */
+
+  /** @type {HTMLTemplateElement} */
   const messageTemplate = document.querySelector(`#${type}`);
 
   const messageModal = /**@type {Element} */(messageTemplate.content.cloneNode(true));

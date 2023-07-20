@@ -1,22 +1,16 @@
 import { debouncedRerenderGallery } from './gallery.js';
 
-/**
- * Количество одновременно отображаемых случайных фотографий
- */
+/** Количество одновременно отображаемых случайных фотографий*/
 const RANDOM_LIMIT = 10;
 
-/**
- * Панель с фильтрами
- */
+/** Панель с фильтрами */
 const filters = document.querySelector('.img-filters');
 
 const defaultButton = filters.querySelector('#filter-default');
 const randomButton = filters.querySelector('#filter-random');
 const discussedButton = filters.querySelector('#filter-discussed');
 
-/**
- * Снимает скрывающий класс с панели с фильтрами
- */
+/**Снимает скрывающий класс с панели с фильтрами */
 const showFilters = () => {
   filters.classList.remove('img-filters--inactive');
 };

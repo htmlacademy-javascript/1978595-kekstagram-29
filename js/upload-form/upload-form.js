@@ -11,7 +11,7 @@ import { showMessage } from '../message-modal.js';
  */
 const uploadNewButton = document.querySelector('.img-upload__input');
 
-const FILE_TYPES = uploadNewButton.getAttribute('accept').split(', ');
+const fileTypes = uploadNewButton.getAttribute('accept').split(', ');
 
 const uploadNewModal = document.querySelector('.img-upload__overlay');
 
@@ -21,17 +21,20 @@ const uploadNewModal = document.querySelector('.img-upload__overlay');
  */
 const uploadPreview = uploadNewModal.querySelector('.img-upload__preview img');
 
-const imageUploadForm = /** @type {HTMLFormElement} */(document.querySelector('.img-upload__form'));
+/** @type {HTMLFormElement} */
+const imageUploadForm = document.querySelector('.img-upload__form');
 
-const effectPreviews = /** @type {NodeListOf<HTMLSpanElement>} */(imageUploadForm.querySelectorAll('.effects__preview'));
+/** @type {NodeListOf<HTMLSpanElement>} */
+const effectPreviews = imageUploadForm.querySelectorAll('.effects__preview');
 
-const /**@type {HTMLButtonElement} */submitButton = imageUploadForm.querySelector('.img-upload__submit');
+/**@type {HTMLButtonElement} */
+const submitButton = imageUploadForm.querySelector('.img-upload__submit');
 
 uploadNewButton.addEventListener('change', () => {
 
   const file = uploadNewButton.files[0];
 
-  if (!(FILE_TYPES.some((ext) => file.name.endsWith(ext)))) {
+  if (!(fileTypes.some((extention) => file.name.endsWith(extention)))) {
 
     showMessage('error', 'Неподдерживаемый тип файла', 'Закрыть');
     imageUploadForm.reset();
@@ -40,8 +43,8 @@ uploadNewButton.addEventListener('change', () => {
 
     const fileURL = URL.createObjectURL(file);
     uploadPreview.src = fileURL;
-    effectPreviews.forEach((el) => {
-      el.style.setProperty('background-image', `url(${fileURL})`);
+    effectPreviews.forEach((element) => {
+      element.style.setProperty('background-image', `url(${fileURL})`);
     });
     openModal(uploadNewModal);
   }

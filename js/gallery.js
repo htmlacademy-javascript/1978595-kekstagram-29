@@ -46,10 +46,12 @@ const renderGallery = (data) => {
   pictureContainer.append(...newThumbnails);
 };
 
+/**
+ * Удаляет все элементы из галереи
+ */
 const clearGallery = () => {
 
   pictureContainer.querySelectorAll('.picture').forEach((element) => element.remove());
-
 };
 
 /**

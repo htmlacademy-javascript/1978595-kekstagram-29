@@ -1,3 +1,7 @@
+const START_SCALE = 100;
+const MAX_SCALE = 100;
+const MIN_SCALE = 25;
+const SCALE_STEP = 25;
 
 /**
  * Форма загрузки нового изображения
@@ -12,11 +16,6 @@ const scaleInput = /** @type {HTMLInputElement} */(imageUploadForm.querySelector
 const scaleSmaller = imageUploadForm.querySelector('.scale__control--smaller');
 
 const scaleBigger = imageUploadForm.querySelector('.scale__control--bigger');
-
-const START_SCALE = 100;
-const MAX_SCALE = 100;
-const MIN_SCALE = 25;
-const SCALE_STEP = 25;
 
 let currentScale = Number.parseFloat(scaleInput.getAttribute('value'));
 

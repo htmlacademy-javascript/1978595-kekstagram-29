@@ -1,9 +1,9 @@
 /**
  * Проверяет элемент на принадлежность к полям текстового ввода
- * @param {Element} elem
+ * @param {Element} element
  * @returns {boolean}
  */
-const isTextInputFocused = (elem) => elem.matches('input[type="text"], textarea');
+const isTextInputFocused = (element) => element.matches('input[type="text"], textarea');
 
 /**
  * Обработчик нажатия кдавиши Esc
@@ -26,7 +26,7 @@ const modalClickHandler = (event) => {
 };
 
 /**
- *
+ * Открывает модальное окно
  * @param {Element} modal
  */
 function openModal(modal) {
@@ -38,6 +38,7 @@ function openModal(modal) {
 }
 
 /**
+ * Закрывает модальное окно
  * @param {Element} modal
  */
 function closeModal (modal) {

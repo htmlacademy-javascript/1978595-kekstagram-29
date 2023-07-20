@@ -56,7 +56,7 @@ const setEffect = (effect) => {
     }
   });
   pictureImage.style.filter = effectSlider.noUiSlider.get();
-  effectInput.value = effectSlider.noUiSlider.get(true);
+  effectInput.value = effectSlider.noUiSlider.get(true).toFixed(2);
 };
 
 /**
@@ -64,7 +64,7 @@ const setEffect = (effect) => {
  */
 const changeEffectLevel = () => {
   const level = effectSlider.noUiSlider.get(true);
-  effectInput.value = level;
+  effectInput.value = level.toFixed(2);
   pictureImage.style.filter = effectSlider.noUiSlider.get();
 };
 

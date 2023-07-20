@@ -11,14 +11,10 @@ const imageUploadForm = /** @type {HTMLFormElement} */(document.querySelector('.
 /**Поле ввода хеш-тегов */
 const hashTagInput = /** @type {HTMLInputElement} */(imageUploadForm.querySelector('.text__hashtags'));
 
-/**
- * Поле ввода комментариев
- */
+/** Поле ввода комментариев */
 const commentInput = /** @type {HTMLTextAreaElement} */(imageUploadForm.querySelector('.text__description'));
 
-/**
- * Кнопка отправки
- */
+/** Кнопка отправки */
 const submitButton = /** @type {HTMLButtonElement} */(imageUploadForm.querySelector('.img-upload__submit'));
 
 const pristineConfig = {
@@ -54,8 +50,8 @@ const validatePattern = () => segmentWords(hashTagInput.value).every((element) =
  * @returns {boolean}
  */
 const validateRepeating = () => {
-  const hashTagArray = segmentWords(hashTagInput.value);
-  return hashTagArray.every((element) => hashTagArray.indexOf(element) === hashTagArray.lastIndexOf(element));
+  const hashTags = segmentWords(hashTagInput.value);
+  return hashTags.every((element) => hashTags.indexOf(element) === hashTags.lastIndexOf(element));
 };
 
 /**
